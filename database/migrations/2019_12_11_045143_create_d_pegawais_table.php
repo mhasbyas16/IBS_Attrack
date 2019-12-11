@@ -19,7 +19,7 @@ class CreateDPegawaisTable extends Migration
             $table->string('nama')->default('0');
             $table->enum('gender',['lk','pr','']);
             $table->string('email')->default('0');
-            $table->text('address')->default('0');            
+            $table->text('address')->nullable();            
             $table->timestamps();
         });
     }

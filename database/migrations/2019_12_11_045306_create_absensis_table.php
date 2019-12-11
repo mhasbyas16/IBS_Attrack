@@ -22,12 +22,12 @@ class CreateAbsensisTable extends Migration
             $table->time('device_time_in');
             $table->date('device_date_in');
             $table->string('loc_in')->default('0');
-            $table->time('server_time_out');
-            $table->date('server_date_out');
-            $table->time('device_time_out');
-            $table->date('device_date_out');
-            $table->string('loc_out')->default('0');
-            $table->string('enum',['hadir','telat','']);
+            $table->time('server_time_out')->nullable();
+            $table->date('server_date_out')->nullable();
+            $table->time('device_time_out')->nullable();
+            $table->date('device_date_out')->nullable();
+            $table->string('loc_out')->nullable();
+            $table->enum('status',['hadir','telat','']);
             $table->timestamps();
         });
     }

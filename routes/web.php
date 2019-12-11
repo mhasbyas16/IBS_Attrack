@@ -12,22 +12,22 @@
 */
 
 //dashboard
-Route::get('/', 'Controller@dash');
+Route::get('/', 'Controller@dash')->name('dash.index');
 
 //attendance
-Route::get('/att', 'Controller@att');
+Route::get('/att', 'Controller@att')->name('attendance.index');
 
 //activity
-Route::get('/act', 'Controller@act');
+Route::get('/act', 'Controller@act')->name('activity.index');
 
 //leaves
-Route::get('/leaves', 'Controller@leaves');
+Route::get('/leaves', 'Controller@leaves')->name('leaves.index');
 
 
 //data
-Route::get('/satu', 'Controller@data1');
-Route::get('/dua', 'Controller@data2');
-Route::get('/tiga', 'Controller@data3');
+Route::get('/satu', 'Controller@data1')->name('customer.index');
+Route::get('/dua', 'Controller@data2')->name('employee.index');
+Route::get('/tiga', 'Controller@data3')->name('customerSite.index');
 Route::get('/addsatu', 'Controller@adddata1');
 Route::get('/adddua', 'Controller@adddata2');
 Route::get('/addtiga', 'Controller@adddata3');

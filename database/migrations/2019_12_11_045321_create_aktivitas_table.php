@@ -20,13 +20,13 @@ class CreateAktivitasTable extends Migration
             $table->time('device_time_in');
             $table->date('device_date_in');
             $table->string('loc_in')->default('0');
-            $table->time('device_time_out')->default('0');
-            $table->date('device_date_out')->default('0');
-            $table->string('loc_out')->default('0');
-            $table->bigInteger('customer_site_id');
+            $table->time('device_time_out')->nullable();
+            $table->date('device_date_out')->nullable();
+            $table->string('loc_out')->nullable();
+            $table->bigInteger('customer_site_id')->nullable();
             $table->bigInteger('job_type_id');
             $table->string('foto')->default('0');
-            $table->text('deskripsi')->default('0');
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
     }
