@@ -8,6 +8,7 @@ class DPegawai extends Model
 {
     protected $fillable=[
         'h_pegawai_id',
+        'jabatan_id',
         'nama',
         'gender',
         'email',
@@ -16,5 +17,8 @@ class DPegawai extends Model
 
     public function hPegawai(){
         return $this->belongsTo('App\HPegawai');
+    }
+    public function jabatan(){
+        return $this->belongsTo('App\Jabatan');
     }
 }

@@ -10,9 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//login
+Route::get('/', 'Controller@login')->name('login.index');
 //dashboard
-Route::get('/', 'Controller@dash')->name('dash.index');
+Route::get('/dashboard', 'Controller@dash')->name('dash.index');
 
 //attendance
 Route::get('/att', 'Controller@att')->name('attendance.index');
