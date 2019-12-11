@@ -1,4 +1,4 @@
-@extends('index')
+@extends('template.template')
 @section('isi')
 
 <!-- Content Wrapper. Contains page content -->

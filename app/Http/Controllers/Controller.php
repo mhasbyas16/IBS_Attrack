@@ -11,7 +11,7 @@ class Controller extends BaseController
 {
     
     public function dash(){
-        return view('index');
+        return view('dashboard.dash');
     }
 
     public function act(){

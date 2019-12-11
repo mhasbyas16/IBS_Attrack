@@ -1,4 +1,4 @@
-@extends('template.style')
+@extends('template.template')
 @section('isi')
 
   <div class="content-wrapper">
