@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Employee's Leaves</h1>
+            <h1>Customer's Data</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -22,11 +22,65 @@
             <div class="card card-primary">
               <div class="card-header">
                 <div class="card-title">
-                  Record Employee Leaves
+                  Customer's List
                 </div>
               </div>
               <div class="card-body">
                 <div class="row">
+                  <div class="col-12">
+                    <!-- jQuery Knob -->
+                    <div class="box box-solid">
+
+                      <!-- begin data alat-->
+                      
+                          <form class="form-horizontal" action="" method="">
+                            
+                            <div class="box-body col-md-12">
+
+                              <div class="row col-md-12">
+                                <label class="col-md-12"><h3>Input Department</h3><hr style="width:100;"></label>                            
+                              </div>
+
+                              <div class="row col-md-12">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">ID</label>
+                                <div class="col-sm-5">
+                                    <input type="text" name="idd" id="idd" value="" hidden="true">
+                                    <input type="text" class="form-control" name="idat" id="idat" value="" readonly>
+                                </div>
+                              </div>
+                              <br>
+                              <div class="row col-md-12">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Customer Name</label>
+                                <div class="col-sm-7">
+                                    <input type="text" name="idd" id="idd" value="" hidden="true">
+                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                </div>
+                              </div>
+                              <br>
+                              <div class="row col-md-12">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Address</label>
+                                <div class="col-sm-7">
+                                    <input type="text" name="idd" id="idd" value="" hidden="true">
+                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                </div>
+                              </div> 
+
+                              <div class="row mt-4">
+                                <ul class="left" style="padding-left: 410pt ">
+                                  <button class="btn btn-success" href="#">Save</button>
+                                  <button class="btn btn-secondary" href="#">Cancel</button>
+                                </ul>
+                              </div>
+                            </div>
+                          </form>
+                          <hr>
+                      <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <div class="row mt-5 mb-5 ml-4">
                   <div class="col-xs-12">
                       <!-- jQuery Knob -->
                     <div class="box box-solid">
@@ -39,9 +93,7 @@
                               <th>No.</th>
                               <th>ID</th>
                               <th>Customer Name</th>
-                              <th>Customer Site</th>
-                              <th>PIC</th>
-                              <th>Phone Number</th>
+                              <th>Address</th>
                               <th>Action</th>
 
                             </tr>
@@ -52,9 +104,7 @@
                               <td>1</td>
                               <td>C01</td>
                               <td>BRI</td>
-                              <td>GTI</td>
-                              <td>Dono</td>
-                              <td>08387283298</td>
+                              <td>Jalan jalan jalan</td>
                               <td>
                                 <a href="" class="btn btn-social-icon btn-success">
                                   <i class="fa fa-edit"></i></a>
@@ -69,9 +119,7 @@
                               <th>No.</th>
                               <th>ID</th>
                               <th>Customer Name</th>
-                              <th>Customer Site</th>
-                              <th>PIC</th>
-                              <th>Phone Number</th>
+                              <th>Address</th>
                               <th>Action</th>
                             </tr>
                             </tfoot>

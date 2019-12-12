@@ -26,8 +26,10 @@ Route::get('/leaves', 'Controller@leaves')->name('leaves.index');
 
 
 //data
-Route::get('/satu', 'Controller@data1')->name('customer.index');
-Route::get('/dua', 'Controller@data2')->name('employee.index');
+Route::get('/satu', 'Controller@data1')->name('employee.index');
+Route::get('/dept_grup', 'Controller@dept_grup')->name('dept_grup.index');
+Route::get('/dept', 'Controller@dept')->name('dept.index');
+Route::get('/dua', 'Controller@data2')->name('customer.index');
 Route::get('/tiga', 'Controller@data3')->name('customerSite.index');
 Route::get('/addsatu', 'Controller@adddata1');
 Route::get('/adddua', 'Controller@adddata2');

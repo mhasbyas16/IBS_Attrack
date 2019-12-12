@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Employee's Leaves</h1>
+            <h1>Employee's Data</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -22,7 +22,7 @@
             <div class="card card-primary">
               <div class="card-header">
                 <div class="card-title">
-                  Record Employee Leaves
+                  Employee's List
                 </div>
               </div>
               <div class="card-body">

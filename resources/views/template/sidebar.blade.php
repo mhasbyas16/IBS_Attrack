@@ -50,56 +50,91 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{url('/att')}}" class="nav-link {{Route::is('attendance.index') ? 'active':''}}">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Attendance
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="{{url('/act')}}" class="nav-link {{Route::is('activity.index') ? 'active':''}}">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Activity
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="{{url('/leaves')}}" class="nav-link {{Route::is('leaves.index') ? 'active':''}}">
-              <i class="nav-icon fas fa-tree"></i>
-              <p>
-                Leaves
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview {{Route::is('employee.index','customer.index','gitcustomerSite.index') ? 'menu-open':''}}">
+
+          <li class="nav-item has-treeview {{Route::is('attendance.index','activity.index','leaves.index') ? 'menu-open':''}}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Data
+                Presence
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url('/dua')}}" class="nav-link {{Route::is('employee.index') ? 'active':''}}">
+                <a href="{{route('attendance.index')}}" class="nav-link {{Route::is('attendance.index') ? 'active':''}}">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>
+                    Attendance
+                    <span class="right badge badge-danger">New</span>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('activity.index')}}" class="nav-link {{Route::is('activity.index') ? 'active':''}}">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>
+                    Activity
+                    <span class="right badge badge-danger">New</span>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('leaves.index')}}" class="nav-link {{Route::is('leaves.index') ? 'active':''}}">
+                  <i class="nav-icon fas fa-tree"></i>
+                  <p>
+                    Leaves
+                    <span class="right badge badge-danger">New</span>
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview {{Route::is('employee.index','customer.index','gitcustomerSite.index') ? 'menu-open':''}}">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Employee
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('employee.index')}}" class="nav-link {{Route::is('employee.index') ? 'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Employee List</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url('/satu')}}" class="nav-link {{Route::is('customer.index') ? 'active':''}}">
+                <a href="{{route('dept_grup.index')}}" class="nav-link {{Route::is('dept_grup.index') ? 'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Department Group</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('dept.index')}}" class="nav-link {{Route::is('dept.index') ? 'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Department </p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview {{Route::is('customer.index','gitcustomerSite.index') ? 'menu-open':''}}">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Customer
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('customer.index')}}" class="nav-link {{Route::is('customer.index') ? 'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Customer List</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url('/tiga')}}" class="nav-link {{Route::is('customerSite.index') ? 'active':''}}">
+                <a href="{{route('customerSite.index')}}" class="nav-link {{Route::is('customerSite.index') ? 'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Customer Site List</p>
                 </a>
