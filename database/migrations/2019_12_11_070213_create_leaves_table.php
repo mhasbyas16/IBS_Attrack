@@ -15,7 +15,7 @@ class CreateLeavesTable extends Migration
     {
         Schema::create('leaves', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('table_code_id');
+            $table->bigInteger('table_code_id')->nullable();
             $table->date('date');
             $table->enum('type',['izin','sakit']);
             $table->string('foto')->default('0');

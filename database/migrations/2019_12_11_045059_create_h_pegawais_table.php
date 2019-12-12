@@ -15,9 +15,10 @@ class CreateHPegawaisTable extends Migration
     {
         Schema::create('h_pegawais', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nip',20);
+            $table->string('nip',20)->unique();
             $table->string('password');
-            $table->string('hakases',25);
+            $table->enum('hakases',['superadmin','admin','manager','user','']);
+            $table->bigInteger('jabatan_id');
             $table->string('imei');
             $table->timestamps();
         });

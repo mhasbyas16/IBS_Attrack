@@ -10,8 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//login
-Route::get('/', 'Controller@login')->name('login.index');
+//login / Logout
+Route::get('/', 'LoginController@login')->name('login.index');
+Route::post('/login', 'LoginController@validate')->name('login.store');
+Route::get('/logout','LoginController@logout')->name('logout.destroy');
 //dashboard
 Route::get('/dashboard', 'Controller@dash')->name('dash.index');
 

@@ -18,15 +18,19 @@
                   <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <p class="pl-2">
-                     Alexander Pierce
+                     {{Session::get('nama')}}
                 </p>
               </a>
               <ul class="nav nav-treeview text-center m-1">
                 <li class="nav-item">
                   <a href="pages/layout/top-nav.html" class="nav-link">
                     <form class="form-inline pl-1" action="#" method="#">
-                      <button class="btn btn-default text-center pl-0" type="button">Account</button>
-                      <button class="btn btn-default text-center pl-2" type="button">Log Out</button>
+                      <a href="#">
+                        <button type="button" class="btn btn-block btn-primary">Account</button>
+                      </a>&nbsp;&nbsp;
+                      <a href="{{route('logout.destroy')}}" onclick="return confirm('Do You Want Logout ?')">
+                        <button type="button" class="btn btn-block btn-danger">Log Out</button>
+                      </a>
                     </form>
                   </a>
                 </li>
