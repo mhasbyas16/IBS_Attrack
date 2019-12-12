@@ -10,6 +10,7 @@ class HPegawai extends Model
         'nip',
         'password',
         'hakases',
+        'jabatan_id',
         'imei'
     ];
 
@@ -21,5 +22,8 @@ class HPegawai extends Model
     }
     public function dPegawai(){
         return $this->hasOne('App\DPegawai');
+    }
+    public function jabatan(){
+        return $this->belongsTo('App\Jabatan');
     }
 }

@@ -18,6 +18,7 @@ class CreateHPegawaisTable extends Migration
             $table->string('nip',20);
             $table->string('password');
             $table->string('hakases',25);
+            $table->bigInteger('jabatan_id');
             $table->string('imei');
             $table->timestamps();
         });

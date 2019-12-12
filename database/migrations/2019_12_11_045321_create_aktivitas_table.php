@@ -16,7 +16,7 @@ class CreateAktivitasTable extends Migration
         Schema::create('aktivitas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('h_pegawai_id');
-            $table->bigInteger('table_code_id');
+            $table->bigInteger('table_code_id')->nullable();
             $table->time('device_time_in');
             $table->date('device_date_in');
             $table->string('loc_in')->default('0');

@@ -16,7 +16,6 @@ class CreateDPegawaisTable extends Migration
         Schema::create('d_pegawais', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('h_pegawai_id');
-            $table->bigInteger('jabatan_id');
             $table->string('nama')->default('0');
             $table->enum('gender',['lk','pr','']);
             $table->string('email')->default('0');
