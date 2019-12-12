@@ -18,38 +18,46 @@ class Controller extends BaseController
     }
 
     public function act(){
-        return view('activity.activity');
+        return view('presensi.activity');
     }
 
     public function att(){
-        return view('attendance.attendance');
+        return view('presensi.attendance');
     }
 
     public function leaves(){
-        return view('leaves.leaves');
+        return view('presensi.leaves');
     }
 
     public function data1(){
-        return view('data.listcustomer');
+        return view('pegawai.listemployee');
+    }
+
+    public function dept_grup(){
+        return view('pegawai.adddeptgrup');
+    }
+
+    public function dept(){
+        return view('pegawai.adddept');
     }
 
     public function data2(){
-        return view('data.listemployee');
+        return view('customer.listcustomer');
     }
 
     public function data3(){
-        return view('data.listcustside');
+        return view('customer.listcustside');
     }
 
     public function adddata1(){
-        return view('data.addcustomer');
+        return view('pegawai.addemployee');
     }
 
     public function adddata2(){
-        return view('data.addemployee');
+        return view('customer.addcustomer');
     }
 
     public function adddata3(){
-        return view('data.addcustside');
+        return view('customer.addcustside');
     }
 }

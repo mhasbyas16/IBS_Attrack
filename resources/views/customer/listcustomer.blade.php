@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Employee's Leaves</h1>
+            <h1>Customer's Data</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -22,11 +22,65 @@
             <div class="card card-primary">
               <div class="card-header">
                 <div class="card-title">
-                  Record Employee Leaves
+                  Customer's List
                 </div>
               </div>
               <div class="card-body">
                 <div class="row">
+                  <div class="col-12">
+                    <!-- jQuery Knob -->
+                    <div class="box box-solid">
+
+                      <!-- begin data alat-->
+                      
+                          <form class="form-horizontal" action="" method="">
+                            
+                            <div class="box-body col-md-12">
+
+                              <div class="row col-md-12">
+                                <label class="col-md-12"><h4>Input Customer</h4><hr style="width:100;"></label>                            
+                              </div>
+
+                              <div class="row col-md-12">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">ID</label>
+                                <div class="col-sm-5">
+                                    <input type="text" name="idd" id="idd" value="" hidden="true">
+                                    <input type="text" class="form-control" name="idat" id="idat" value="" readonly>
+                                </div>
+                              </div>
+                              <br>
+                              <div class="row col-md-12">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Customer Name</label>
+                                <div class="col-sm-7">
+                                    <input type="text" name="idd" id="idd" value="" hidden="true">
+                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                </div>
+                              </div>
+                              <br>
+                              <div class="row col-md-12">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Address</label>
+                                <div class="col-sm-7">
+                                    <input type="text" name="idd" id="idd" value="" hidden="true">
+                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                </div>
+                              </div> 
+
+                              <div class="row mt-4">
+                                <ul class="left" style="padding-left: 410pt ">
+                                  <button class="btn btn-success" href="#">Save</button>
+                                  <button class="btn btn-secondary" href="#">Cancel</button>
+                                </ul>
+                              </div>
+                            </div>
+                          </form>
+                          <hr>
+                      <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <div class="row mt-5 mb-5 ml-4">
                   <div class="col-xs-12">
                       <!-- jQuery Knob -->
                     <div class="box box-solid">
@@ -37,15 +91,9 @@
                             <thead>
                             <tr>
                               <th>No.</th>
-                              <th>Employee ID</th>
-                              <th>Name</th>
-                              <th>Date Birth</th>
-                              <th>Place Birth</th>
-                              <th>Gender</th>
-                              <th>Religion</th>
+                              <th>ID</th>
+                              <th>Customer Name</th>
                               <th>Address</th>
-                              <th>Department</th>
-                              <th>Grade</th>
                               <th>Action</th>
 
                             </tr>
@@ -54,15 +102,9 @@
                             
                             <tr>
                               <td>1</td>
-                              <td>67890</td>
-                              <td>Nana</td>
-                              <td>5/8/1996</td>
-                              <td>Jakarta</td>
-                              <td>Female</td>
-                              <td>Islam</td>
-                              <td>Jalan jalan</td>
-                              <td>Technical</td>
-                              <td>Action</td>
+                              <td>C01</td>
+                              <td>BRI</td>
+                              <td>Jalan jalan jalan</td>
                               <td>
                                 <a href="" class="btn btn-social-icon btn-success">
                                   <i class="fa fa-edit"></i></a>
@@ -75,15 +117,9 @@
                             <tfoot>
                             <tr>
                               <th>No.</th>
-                              <th>Employee ID</th>
-                              <th>Name</th>
-                              <th>Date Birth</th>
-                              <th>Place Birth</th>
-                              <th>Gender</th>
-                              <th>Religion</th>
+                              <th>ID</th>
+                              <th>Customer Name</th>
                               <th>Address</th>
-                              <th>Department</th>
-                              <th>Grade</th>
                               <th>Action</th>
                             </tr>
                             </tfoot>

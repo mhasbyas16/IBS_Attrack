@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Employee's Leaves</h1>
+            <h1>Department Group's Data</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -22,11 +22,47 @@
             <div class="card card-primary">
               <div class="card-header">
                 <div class="card-title">
-                  Record Employee Leaves
+                  Department Group's List
                 </div>
               </div>
               <div class="card-body">
                 <div class="row">
+                  <div class="col-12">
+                    <div class="box box-solid">
+                          <form class="form-horizontal" action="" method="">
+                            <div class="box-body">
+
+                              <div class="row col-md-12">
+                                <label class="col-md-12"><h4>Input Department Group</h4><hr></label>
+                              </div>
+
+                              <div class="row col-md-12 mt-2">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">ID</label>
+                                <div class="col-sm-5">
+                                    <input type="text" name="idd" id="idd" value="" hidden="true">
+                                    <input type="text" class="form-control" name="idat" id="idat" value="" readonly>
+                                </div>
+                              </div>
+                              <div class="row col-md-12 mt-2">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Department Group Name</label>
+                                <div class="col-sm-5">
+                                    <input type="text" name="idd" id="idd" value="" hidden="true">
+                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row mt-5 col-md-12">
+                              <ul class="left" style="padding-left: 530px">
+                                <button class="btn btn-success" href="#">Save</button>
+                                <button class="btn btn-secondary" href="#">Cancel</button>
+                              </ul>
+                            </div>
+                          </form>
+                          <hr>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-5 mb-5 ml-4">
                   <div class="col-xs-12">
                       <!-- jQuery Knob -->
                     <div class="box box-solid">
@@ -36,36 +72,27 @@
                           <table id="pegawais" class="table table-bordered table-striped text-center">
                             <thead>
                             <tr>
-                              <th>No.</th>
                               <th>ID</th>
-                              <th>Customer Name</th>
-                              <th>Address</th>
+                              <th>Department Group Name</th>
                               <th>Action</th>
 
                             </tr>
                             </thead>
                             <tbody>
-                            
                             <tr>
-                              <td>1</td>
-                              <td>C01</td>
-                              <td>BRI</td>
-                              <td>Jalan jalan jalan</td>
+                              <td>TC</td>
+                              <td>Technical</td>
                               <td>
-                                <a href="" class="btn btn-social-icon btn-success">
-                                  <i class="fa fa-edit"></i></a>
-                                <a href="" class="btn btn-social-icon btn-danger">
-                                  <i class="fa fa-trash"></i></a>
+                                <form action="" method="">
+                                    <input type="submit" class="btn btn-danger btn-sm" href="" value="Delete">
+                                </form>
                               </td>
                             </tr>
-                            
                             </tbody>
                             <tfoot>
                             <tr>
-                              <th>No.</th>
                               <th>ID</th>
-                              <th>Customer Name</th>
-                              <th>Address</th>
+                              <th>Department Group Name</th>
                               <th>Action</th>
                             </tr>
                             </tfoot>

@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Employee's Leaves</h1>
+            <h1>Customer Site's Data</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -22,11 +22,86 @@
             <div class="card card-primary">
               <div class="card-header">
                 <div class="card-title">
-                  Record Employee Leaves
+                  Customer Site's List
                 </div>
               </div>
               <div class="card-body">
                 <div class="row">
+                  <div class="col-12">
+                    <!-- jQuery Knob -->
+                    <div class="box box-solid">
+
+                      <!-- begin data alat-->
+                      
+                          <form class="form-horizontal" action="" method="">
+                            
+                            <div class="box-body">
+                              <div class="row">
+                                <div class="col-xs-7 col-md-12 text-left">
+                                    <div class="form-group">
+                                      <label class="col-sm-12"><h4>Input Customer Site</h4><hr></label>
+                                    </div>
+                                </div>
+                              </div>
+
+                              <div class="row col-md-12 mt-2">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Customer ID</label>
+                                <div class="col-sm-5">
+                                    <select class="form-control select2" name="jenisterapi " id="jenisterapi" onchange="readURL(this);">
+                                      <option selected hidden>Choose Customer</option>
+                                      <option value="">BRI</option>
+                                    </select>
+                                </div>
+                              </div>
+
+                              <div class="row col-md-12 mt-2">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">ID</label>
+                                <div class="col-sm-5">
+                                    <input type="text" name="idd" id="idd" value="" hidden="true">
+                                    <input type="text" class="form-control" name="idat" id="idat" value="" readonly>
+                                </div>
+                              </div>
+
+                              <div class="row col-md-12 mt-2">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Customer Site Name</label>
+                                <div class="col-sm-5">
+                                    <input type="text" name="idd" id="idd" value="" hidden="true">
+                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                </div>
+                              </div>
+
+                              <div class="row col-md-12 mt-2">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Person in Charge</label>
+                                <div class="col-sm-5">
+                                    <input type="text" name="idd" id="idd" value="" hidden="true">
+                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                </div>
+                              </div>
+
+                              <div class="row col-md-12 mt-2">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Phone Number</label>
+                                <div class="col-sm-5">
+                                    <input type="text" name="idd" id="idd" value="" hidden="true">
+                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                </div>
+                              </div>
+
+                              <div class="row mt-4">
+                                <ul class="left" style="padding-left: 410pt ">
+                                  <button class="btn btn-success" href="#">Save</button>
+                                  <button class="btn btn-secondary" href="#">Cancel</button>
+                                </ul>
+                              </div>
+                            </div>
+                          </form>
+                          <hr>
+                      <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <div class="row mt-5 mb-5 ml-4">
                   <div class="col-xs-12">
                       <!-- jQuery Knob -->
                     <div class="box box-solid">
