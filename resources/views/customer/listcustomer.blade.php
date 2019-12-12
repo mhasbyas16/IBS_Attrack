@@ -38,7 +38,7 @@
                             <div class="box-body col-md-12">
 
                               <div class="row col-md-12">
-                                <label class="col-md-12"><h3>Input Department</h3><hr style="width:100;"></label>                            
+                                <label class="col-md-12"><h4>Input Customer</h4><hr style="width:100;"></label>                            
                               </div>
 
                               <div class="row col-md-12">
