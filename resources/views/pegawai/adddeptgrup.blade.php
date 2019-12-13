@@ -51,18 +51,19 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="row mt-5 col-md-12">
-                              <ul class="left" style="padding-left: 530px">
+                            <div class="row mt-4 col-md-12">
+                              <ul class="text-right col-md-8" style="padding-right: 10px">
                                 <button class="btn btn-success" href="#">Save</button>
                                 <button class="btn btn-secondary" href="#">Cancel</button>
                               </ul>
                             </div>
+                            <hr>
                           </form>
                           <hr>
                     </div>
                   </div>
                 </div>
-                <div class="row mt-5 mb-5 ml-4">
+                <div class="row mt-3 mb-3 ml-4">
                   <div class="col-xs-12">
                       <!-- jQuery Knob -->
                     <div class="box box-solid">

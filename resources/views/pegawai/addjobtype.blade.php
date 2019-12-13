@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Customer Site's Data</h1>
+            <h1>Job Type's Data</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -22,7 +22,7 @@
             <div class="card card-primary">
               <div class="card-header">
                 <div class="card-title">
-                  Customer Site's List
+                  Job Type's List
                 </div>
               </div>
               <div class="card-body">
@@ -31,67 +31,50 @@
                     <!-- jQuery Knob -->
                     <div class="box box-solid">
 
-                      <!-- begin data alat-->
-                      
                           <form class="form-horizontal" action="" method="">
-                            
                             <div class="box-body">
-                              <div class="row">
-                                <div class="col-xs-7 col-md-12 text-left">
-                                    <div class="form-group">
-                                      <label class="col-sm-12"><h4>Input Customer Site</h4><hr></label>
-                                    </div>
-                                </div>
+
+                              <div class="row col-md-12">
+                                <label class="col-md-12"><h4>Input Job Type</h4><hr></label>
                               </div>
 
                               <div class="row col-md-12 mt-2">
-                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Customer Name</label>
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Department ID</label>
                                 <div class="col-sm-5">
-                                    <select class="form-control select2" name="jenisterapi " id="jenisterapi" onchange="readURL(this);">
-                                      <option selected hidden>Choose Customer Name</option>
-                                      <option value="">BRI</option>
+                                  <div class="col-sm-5">
+                                    <select>
+                                      <option value="Choose Department ID">Choose Department ID</option>
                                     </select>
+                                  </div>
                                 </div>
                               </div>
-
                               <div class="row col-md-12 mt-2">
-                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">ID</label>
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Department Name</label>
+                                <div class="col-sm-5">
+                                    <input type="text" name="idd" id="idd" value="" hidden="true">
+                                    <input type="text" class="form-control" name="idat" id="idat" value="" readonly="">
+                                </div>
+                              </div>
+                              <div class="row col-md-12 mt-2">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">ID</label>
                                 <div class="col-sm-5">
                                     <input type="text" name="idd" id="idd" value="" hidden="true">
                                     <input type="text" class="form-control" name="idat" id="idat" value="" readonly>
                                 </div>
                               </div>
-
                               <div class="row col-md-12 mt-2">
-                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Customer Site Name</label>
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Job Type</label>
                                 <div class="col-sm-5">
                                     <input type="text" name="idd" id="idd" value="" hidden="true">
                                     <input type="text" class="form-control" name="idat" id="idat" value="">
                                 </div>
                               </div>
-
-                              <div class="row col-md-12 mt-2">
-                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Person in Charge</label>
-                                <div class="col-sm-5">
-                                    <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="">
-                                </div>
-                              </div>
-
-                              <div class="row col-md-12 mt-2">
-                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Phone Number</label>
-                                <div class="col-sm-5">
-                                    <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="">
-                                </div>
-                              </div>
-
-                              <div class="row mt-4">
-                                <ul class="text-right col-md-8" style="padding-right: 13pt ">
-                                  <button class="btn btn-success" href="#">Save</button>
-                                  <button class="btn btn-secondary" href="#">Cancel</button>
-                                </ul>
-                              </div>
+                            </div>
+                            <div class="row mt-4 col-md-12">
+                              <ul class="text-right col-md-8" style="padding-right: 10px">
+                                <button class="btn btn-success" href="#">Save</button>
+                                <button class="btn btn-secondary" href="#">Cancel</button>
+                              </ul>
                             </div>
                           </form>
                           <hr>
@@ -111,45 +94,33 @@
                           <table id="pegawais" class="table table-bordered table-striped text-center">
                             <thead>
                             <tr>
-                              <th>No.</th>
-                              <th>Customer ID</th>
-                              <th>Customer Name</th>
-                              <th>Cust Site ID</th>
-                              <th>Customer Site</th>
-                              <th>PIC</th>
-                              <th>Phone Number</th>
+                              <th>Department ID</th>
+                              <th>Department Name</th>
+                              <th>ID</th>
+                              <th>Job Type</th>
                               <th>Action</th>
 
                             </tr>
                             </thead>
                             <tbody>
-                            
                             <tr>
+                              <td>TC001</td>
+                              <td>Programmer</td>
                               <td>1</td>
-                              <td>C01</td>
-                              <td>BRI</td>
-                              <td>1</td>
-                              <td>GTI</td>
-                              <td>Dono</td>
-                              <td>08387283298</td>
+                              <td>Membuat Mock Up Aplikasi</td>
                               <td>
-                                <a href="" class="btn btn-social-icon btn-success">
-                                  <i class="fa fa-edit"></i></a>
-                                <a href="" class="btn btn-social-icon btn-danger">
-                                  <i class="fa fa-trash"></i></a>
+                                <form action="" method="">
+                                    <input type="submit" class="btn btn-danger btn-sm" href="" value="Delete">
+                                </form>
                               </td>
                             </tr>
-                            
                             </tbody>
                             <tfoot>
                             <tr>
-                              <th>No.</th>
-                              <th>Customer ID</th>
-                              <th>Customer Name</th>
-                              <th>Cust Site ID</th>
-                              <th>Customer Site</th>
-                              <th>PIC</th>
-                              <th>Phone Number</th>
+                              <th>Department ID</th>
+                              <th>Department Name</th>
+                              <th>ID</th>
+                              <th>Job Type</th>
                               <th>Action</th>
                             </tr>
                             </tfoot>

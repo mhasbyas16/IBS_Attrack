@@ -39,6 +39,10 @@ class Controller extends BaseController
         return view('pegawai.adddept');
     }
 
+    public function job_type(){
+        return view('pegawai.addjobtype');
+    }
+
     public function data2(){
         return view('customer.listcustomer');
     }

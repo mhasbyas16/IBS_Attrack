@@ -51,7 +51,7 @@
                               <br>
                               <div class="row col-md-12">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Customer Name</label>
-                                <div class="col-sm-7">
+                                <div class="col-sm-5">
                                     <input type="text" name="idd" id="idd" value="" hidden="true">
                                     <input type="text" class="form-control" name="idat" id="idat" value="">
                                 </div>
@@ -59,14 +59,13 @@
                               <br>
                               <div class="row col-md-12">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Address</label>
-                                <div class="col-sm-7">
-                                    <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                <div class="col-sm-5">
+                                    <textarea name="" type="text" class="form-control" name="idat" id="idat" value=""></textarea>
                                 </div>
                               </div> 
 
                               <div class="row mt-4">
-                                <ul class="left" style="padding-left: 410pt ">
+                                <ul class="text-right col-md-8" style="padding-right: 10pt ">
                                   <button class="btn btn-success" href="#">Save</button>
                                   <button class="btn btn-secondary" href="#">Cancel</button>
                                 </ul>
@@ -80,7 +79,7 @@
                   </div>
                   <!-- /.col -->
                 </div>
-                <div class="row mt-5 mb-5 ml-4">
+                <div class="row mt-4 mb-4 ml-4">
                   <div class="col-xs-12">
                       <!-- jQuery Knob -->
                     <div class="box box-solid">
@@ -181,6 +180,11 @@
       $(this).addClass('active');
     });
   })
+</script>
+<script type="text/javascript">
+ $(document).ready( function () {
+    $('#pegawais').DataTable(); 
+} );
 </script>
 </body>
 </html>
