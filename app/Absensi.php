@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Absensi extends Model
 {
     protected $fillable=[
-        'h_pegawai_id',
+        'pegawai_id',
         'table_code_id',
         'server_time_in',
         'server_date_in',
@@ -19,11 +19,12 @@ class Absensi extends Model
         'device_time_out',
         'device_date_out',
         'loc_out',
-        'enum'
+        'status',
+        'check'
     ];
 
-    public function hPegawai(){
-        return $this->belongsTo('App\HPegawai');
+    public function pegawai(){
+        return $this->belongsTo('App\Pegawai');
     }
     public function tableCode(){
         return $this->belongsTo('App\TableCode');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHPegawaisTable extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateHPegawaisTable extends Migration
      */
     public function up()
     {
-        Schema::create('h_pegawais', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nip',20)->unique();
+            $table->string('username')->unique();
             $table->string('password');
-            $table->enum('hakases',['superadmin','admin','manager','user','']);
-            $table->bigInteger('jabatan_id');
-            $table->string('imei');
+            $table->string('name',30);
+            $table->string('email')->unique()->nullable();
+            $table->enum('rule',['superadmin','admin','manager','']);
+            $table->bigInteger('kelompok_dept_id')->default('0');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateHPegawaisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('h_pegawais');
+        Schema::dropIfExists('users');
     }
 }

@@ -13,4 +13,7 @@ class KelompokDept extends Model
     public function jabatans(){
         return $this->hasMany('App\Jabatan');
     }
+    public function users(){
+        return $this->hasMany('App\User');
+    }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Aktivitas extends Model
 {
     protected $fillable=[
-        'h_pegawai_id',
+        'pegawai_id',
         'table_code_id',
         'device_time_in',
         'device_date_in',
@@ -16,12 +16,13 @@ class Aktivitas extends Model
         'device_date_out',
         'loc_out',
         'customer_site_id',
-        'job_type_id',
+        'job_activity_id',
         'foto',
-        'deskripsi'
+        'deskripsi',
+        'check'
     ];
-    public function hPegawai(){
-        return $this->belongsTo('App\HPegawai');
+    public function pegawai(){
+        return $this->belongsTo('App\Pegawai');
     }
     public function tableCode(){
         return $this->belongsTo('App\TableCode');
@@ -29,7 +30,7 @@ class Aktivitas extends Model
     public function customerSite(){
         return $this->belongsTo('App\CustomerSite');
     }
-    public function jobType(){
-        return $this->belongsTo('App\JobType');
+    public function jobActivity(){
+        return $this->belongsTo('App\JobActivity');
     }
 }

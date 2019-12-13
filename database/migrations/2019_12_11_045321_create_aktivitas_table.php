@@ -15,7 +15,7 @@ class CreateAktivitasTable extends Migration
     {
         Schema::create('aktivitas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('h_pegawai_id');
+            $table->bigInteger('pegawai_id');
             $table->bigInteger('table_code_id')->nullable();
             $table->time('device_time_in');
             $table->date('device_date_in');
@@ -24,9 +24,10 @@ class CreateAktivitasTable extends Migration
             $table->date('device_date_out')->nullable();
             $table->string('loc_out')->nullable();
             $table->bigInteger('customer_site_id')->nullable();
-            $table->bigInteger('job_type_id');
+            $table->bigInteger('job_activity_id');
             $table->string('foto')->default('0');
             $table->text('deskripsi')->nullable();
+            $table->string('check',10);
             $table->timestamps();
         });
     }

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\HPegawai;
+use App\User as AppUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
@@ -14,25 +15,26 @@ class LoginController extends Controller
     }
 
     public function validate(Request $req){
-        $nip=$req->nip;
-        $pass=md5($req->pass);
+        $username=$req->nip;
+        $pass=$req->pass;
 
-        $sql=HPegawai::with('dPegawai','jabatan')->where('nip',$nip);
+        $sql=AppUser::with('kelompokDept')->where('username',$username);
         $count=$sql->count();
         
         if ($count>=1) {
             $user=$sql->first();
-            if ($pass==$user->password) {
-                if ($user->hakakses=='user') {
-                    abort(403,"403 Forbidden");
+            if (Hash::check($pass, $user->password) ) {
+                if ($user->kelompok_dept_id=='0') {
+                    Session::put('dept','superadmin');
+                    
                 }else{
+                    Session::put('dept',$user->kelompokDept->nama);
+                }
                     Session::put('id',$user->id);
-                    Session::put('rule',$user->hakakses);
-                    Session::put('jabatan',$user->jabatan->nama);
-                    Session::put('nama',$user->dPegawai->nama);
+                    Session::put('rule',$user->rule);                    
+                    Session::put('nama',$user->name);
     
-                    return redirect()->route('dash.index');
-                }            
+                    return redirect()->route('dash.index');            
                 
             }elseif ($pass!=$user->password) {
                 return redirect()->back()->with('alert','Your Password Is Wrong, Please Try Again');

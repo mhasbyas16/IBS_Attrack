@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLeavesTable extends Migration
+class CreateApiTokensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateLeavesTable extends Migration
      */
     public function up()
     {
-        Schema::create('leaves', function (Blueprint $table) {
+        Schema::create('api_tokens', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('pegawai_id');
-            $table->bigInteger('table_code_id')->nullable();
-            $table->date('date');
-            $table->enum('type',['izin','sakit']);
-            $table->string('foto')->default('0');
+            $table->string('status',5)->default('200');
+            $table->string('message')->default('success retrieve data');
+            $table->string('api_token')->unique()->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateLeavesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leaves');
+        Schema::dropIfExists('api_tokens');
     }
 }

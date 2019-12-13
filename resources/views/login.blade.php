@@ -1,3 +1,6 @@
+@if (\Session::has('id'))
+<script>window.location = "{{route('dash.index')}}";</script>
+@endif
 <!DOCTYPE html>
 <html>
 <head>

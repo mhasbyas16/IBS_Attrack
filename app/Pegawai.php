@@ -4,14 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HPegawai extends Model
+class Pegawai extends Model
 {
     protected $fillable=[
         'nip',
         'password',
-        'hakases',
         'jabatan_id',
-        'imei'
+        'imei',
+        'nama',
+        'gender',
+        'email',
+        'address'
     ];
 
     public function absensis(){
@@ -20,10 +23,10 @@ class HPegawai extends Model
     public function aktivitas(){
         return $this->hasMany('App\Aktivitas');
     }
-    public function dPegawai(){
-        return $this->hasOne('App\DPegawai');
+    public function leaves(){
+        return $this->hasMany('App\Leave');
     }
-    public function jabatan(){
-        return $this->belongsTo('App\Jabatan');
+    public function logPegawais(){
+        return $this->hasMany('App\LogPegawai');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLeavesTable extends Migration
+class CreateLogAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateLeavesTable extends Migration
      */
     public function up()
     {
-        Schema::create('leaves', function (Blueprint $table) {
+        Schema::create('log_admins', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('pegawai_id');
-            $table->bigInteger('table_code_id')->nullable();
-            $table->date('date');
-            $table->enum('type',['izin','sakit']);
-            $table->string('foto')->default('0');
+            $table->bigInteger('user_id');
+            $table->string('mac_address')->nullable();
+            $table->string('ip_address')->nullable();
+            $table->string('message',50)->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateLeavesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leaves');
+        Schema::dropIfExists('log_admins');
     }
 }

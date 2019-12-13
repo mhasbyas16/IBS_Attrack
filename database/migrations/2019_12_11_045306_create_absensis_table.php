@@ -15,7 +15,7 @@ class CreateAbsensisTable extends Migration
     {
         Schema::create('absensis', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('h_pegawai_id');
+            $table->bigInteger('pegawai_id');
             $table->bigInteger('table_code_id')->nullable();
             $table->time('server_time_in');
             $table->date('server_date_in');
@@ -28,6 +28,7 @@ class CreateAbsensisTable extends Migration
             $table->date('device_date_out')->nullable();
             $table->string('loc_out')->nullable();
             $table->enum('status',['hadir','telat','']);
+            $table->string('check',10);
             $table->timestamps();
         });
     }
