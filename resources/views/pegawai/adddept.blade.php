@@ -41,8 +41,16 @@
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Department Group ID</label>
                                 <div class="col-sm-5">
+                                  <select>
+                                    <option value="Choose Department Group ID">Choose Department Group ID</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="row col-md-12 mt-2">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Department Group Name</label>
+                                <div class="col-sm-5">
                                     <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="" readonly>
+                                    <input type="text" class="form-control" name="idat" id="idat" value="" readonly="">
                                 </div>
                               </div>
                               <div class="row col-md-12 mt-2">
@@ -67,8 +75,8 @@
                                 </div>
                               </div> 
                             </div>
-                            <div class="row mt-5 col-md-12">
-                              <ul class="left" style="padding-left: 530px">
+                            <div class="row mt-4 col-md-12">
+                              <ul class="text-right col-md-8" style="padding-right: 10px">
                                 <button class="btn btn-success" href="#">Save</button>
                                 <button class="btn btn-secondary" href="#">Cancel</button>
                               </ul>
@@ -81,7 +89,7 @@
                   </div>
                   <!-- /.col -->
                 </div>
-                <div class="row mt-5 mb-5 ml-4">
+                <div class="row mt-4 mb-4 ml-4">
                   <div class="col-xs-12">
                       <!-- jQuery Knob -->
                     <div class="box box-solid">
@@ -92,6 +100,7 @@
                             <thead>
                             <tr>
                               <th>Department Group ID</th>
+                              <th>Department Group Name</th>
                               <th>ID</th>
                               <th>Department Name</th>
                               <th>Action</th>
@@ -101,6 +110,7 @@
                             <tbody>
                             <tr>
                               <td>TC</td>
+                              <td>Technical</td>
                               <td>TC001</td>
                               <td>Programmer</td>
                               <td>
@@ -113,6 +123,7 @@
                             <tfoot>
                             <tr>
                               <th>Department Group ID</th>
+                              <th>Department Group Name</th>
                               <th>ID</th>
                               <th>Department Name</th>
                               <th>Action</th>

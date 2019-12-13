@@ -120,6 +120,12 @@
                   <p>Department </p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('job_type.index')}}" class="nav-link {{Route::is('job_type.index') ? 'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Job Type </p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview {{Route::is('customer.index','gitcustomerSite.index') ? 'menu-open':''}}">
