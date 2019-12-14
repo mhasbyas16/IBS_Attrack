@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomerSitesTable extends Migration
+class CreateLeaveTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateCustomerSitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_sites', function (Blueprint $table) {
+        Schema::create('leave_types', function (Blueprint $table) {
             $table->bigIncrements('id')->autoIncrement();
-            $table->bigInteger('customer_id');
-            $table->string('customer_site');
-            $table->string('pic')->default('0');
-            $table->string('phone',15)->default('0');
+            $table->string('type',10);
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateCustomerSitesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_sites');
+        Schema::dropIfExists('leave_types');
     }
 }

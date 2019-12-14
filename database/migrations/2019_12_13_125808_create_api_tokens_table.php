@@ -14,10 +14,10 @@ class CreateApiTokensTable extends Migration
     public function up()
     {
         Schema::create('api_tokens', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->autoIncrement();
             $table->string('status',5)->default('200');
             $table->string('message')->default('success retrieve data');
-            $table->string('api_token')->unique()->nullable();
+            $table->string('api_token');
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ class CreateTableCodesTable extends Migration
     public function up()
     {
         Schema::create('table_codes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->autoIncrement();
             $table->string('code',10);
             $table->string('year',5);
             $table->enum('subject',['absensi','aktivitas','leave']);

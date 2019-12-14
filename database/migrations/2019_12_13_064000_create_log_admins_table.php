@@ -14,7 +14,7 @@ class CreateLogAdminsTable extends Migration
     public function up()
     {
         Schema::create('log_admins', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->autoIncrement();
             $table->bigInteger('user_id');
             $table->string('mac_address')->nullable();
             $table->string('ip_address')->nullable();
