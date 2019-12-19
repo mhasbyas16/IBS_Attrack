@@ -33,6 +33,7 @@ class LoginController extends Controller
                     Session::put('id',$user->id);
                     Session::put('rule',$user->rule);                    
                     Session::put('nama',$user->name);
+                    Session::put('dept',$user->kelompok_dept_id);
     
                     return redirect()->route('dash.index');            
                 

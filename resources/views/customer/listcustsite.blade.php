@@ -33,8 +33,8 @@
 
                       <!-- begin data alat-->
                       
-                          <form class="form-horizontal" action="" method="">
-                            
+                          <form class="form-horizontal" action="{{route('customerSite.store')}}" method="post">
+                            {{ csrf_field() }}
                             <div class="box-body">
                               <div class="row">
                                 <div class="col-xs-7 col-md-12 text-left">
@@ -43,53 +43,50 @@
                                     </div>
                                 </div>
                               </div>
-
+                              <input type="hidden" class="form-control" name="id" id="CUSTS">
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Customer Name</label>
                                 <div class="col-sm-5">
-                                    <select class="form-control select2" name="jenisterapi " id="jenisterapi" onchange="readURL(this);">
-                                      <option selected hidden>Choose Customer Name</option>
-                                      <option value="">BRI</option>
+                                    <select class="form-control select2" name="cust" id="Custs" onchange="readURL(this);">
+                                      @foreach ($cust as $item)
+                                      <option value="{{$item->id}}">{{$item->cust_name}}</option>
+                                      @endforeach
                                     </select>
-                                </div>
-                              </div>
-
-                              <div class="row col-md-12 mt-2">
-                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">ID</label>
-                                <div class="col-sm-5">
-                                    <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="" readonly>
                                 </div>
                               </div>
 
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Customer Site Name</label>
                                 <div class="col-sm-5">
-                                    <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                    <input type="text" class="form-control" name="name" id="Name" required>
                                 </div>
                               </div>
 
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Person in Charge</label>
                                 <div class="col-sm-5">
-                                    <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                    <input type="text" class="form-control" name="pic" id="PIC" required>
                                 </div>
                               </div>
 
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Phone Number</label>
                                 <div class="col-sm-5">
-                                    <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                    <input type="text" class="form-control" name="phone" id="Phone" required>
+                                </div>
+                              </div>
+                              <br>
+                              <div class="row col-md-12">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Address</label>
+                                <div class="col-sm-5">
+                                    <textarea type="text" class="form-control" name="address" id="Address" required></textarea>
                                 </div>
                               </div>
 
                               <div class="row mt-4">
                                 <ul class="text-right col-md-8" style="padding-right: 13pt ">
                                   <button class="btn btn-success" href="#">Save</button>
-                                  <button class="btn btn-secondary" href="#">Cancel</button>
+                                  <a class="btn btn-secondary" href="javascript:void(0)" id="Cancelcust">Cancel</a>
                                 </ul>
                               </div>
                             </div>
@@ -112,44 +109,49 @@
                             <thead>
                             <tr>
                               <th>No.</th>
-                              <th>Customer ID</th>
-                              <th>Customer Name</th>
-                              <th>Cust Site ID</th>
+                              <th>Customer</th>
                               <th>Customer Site</th>
-                              <th>PIC</th>
+                              <th>Personal In Charge</th>
                               <th>Phone Number</th>
+                              <th>Address</th>
                               <th>Action</th>
 
                             </tr>
                             </thead>
                             <tbody>
-                            
-                            <tr>
-                              <td>1</td>
-                              <td>C01</td>
-                              <td>BRI</td>
-                              <td>1</td>
-                              <td>GTI</td>
-                              <td>Dono</td>
-                              <td>08387283298</td>
+                            @php
+                                $no=1;
+                            @endphp
+                            @foreach ($cust as $m)
+                            @foreach ($m->customerSites as $e)
+                            <tr id="id_site_{{$e->id}}">
+                              <td>{{$no}}</td>
+                              <td>{{$m->cust_name}}</td>
+                              <td>{{$e->customer_site}}</td>
+                              <td>{{$e->pic}}</td>
+                              <td>{{$e->phone}}</td>
+                              <td>{{$e->address}}</td>
                               <td>
-                                <a href="" class="btn btn-social-icon btn-success">
+                                <a href="javascript:void(0)" id="editCustSite" data-id="{{$e->id}}" class="btn btn-social-icon btn-success">
                                   <i class="fa fa-edit"></i></a>
-                                <a href="" class="btn btn-social-icon btn-danger">
+                                <a href="javascript:void(0)" id="deleteCustSite" data-id="{{$e->id}}" class="btn btn-social-icon btn-danger">
                                   <i class="fa fa-trash"></i></a>
                               </td>
                             </tr>
-                            
+                            @php
+                             $no++;   
+                            @endphp
+                            @endforeach
+                            @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
                               <th>No.</th>
-                              <th>Customer ID</th>
-                              <th>Customer Name</th>
-                              <th>Cust Site ID</th>
+                              <th>Customer</th>
                               <th>Customer Site</th>
-                              <th>PIC</th>
+                              <th>Personal In Charge</th>
                               <th>Phone Number</th>
+                              <th>Address</th>
                               <th>Action</th>
                             </tr>
                             </tfoot>

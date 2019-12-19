@@ -33,41 +33,28 @@
 
                       <!-- begin data alat-->
                       
-                          <form class="form-horizontal" action="" method="">
-                            
+                          <form class="form-horizontal" action="{{route('customer.store')}}" method="post">
+                            {{ csrf_field() }}
                             <div class="box-body col-md-12">
 
                               <div class="row col-md-12">
                                 <label class="col-md-12"><h4>Input Customer</h4><hr style="width:100;"></label>                            
                               </div>
 
-                              <div class="row col-md-12">
-                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">ID</label>
-                                <div class="col-sm-5">
-                                    <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="" readonly>
-                                </div>
-                              </div>
+                              <input type="hidden" class="form-control" name="id" id="CUST">
                               <br>
                               <div class="row col-md-12">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Customer Name</label>
                                 <div class="col-sm-5">
-                                    <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                    <input type="text" class="form-control" name="cust_name" id="CustName" value="">
                                 </div>
                               </div>
-                              <br>
-                              <div class="row col-md-12">
-                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 40pt">Address</label>
-                                <div class="col-sm-5">
-                                    <textarea name="" type="text" class="form-control" name="idat" id="idat" value=""></textarea>
-                                </div>
-                              </div> 
+                              <br> 
 
                               <div class="row mt-4">
                                 <ul class="text-right col-md-8" style="padding-right: 10pt ">
                                   <button class="btn btn-success" href="#">Save</button>
-                                  <button class="btn btn-secondary" href="#">Cancel</button>
+                                  <a class="btn btn-secondary" href="javascript:void(0)" id="custCancel">Cancel</a>
                                 </ul>
                               </div>
                             </div>
@@ -90,35 +77,35 @@
                             <thead>
                             <tr>
                               <th>No.</th>
-                              <th>ID</th>
                               <th>Customer Name</th>
-                              <th>Address</th>
                               <th>Action</th>
 
                             </tr>
                             </thead>
                             <tbody>
-                            
-                            <tr>
-                              <td>1</td>
-                              <td>C01</td>
-                              <td>BRI</td>
-                              <td>Jalan jalan jalan</td>
+                            @php
+                                $no=1;
+                            @endphp
+                            @foreach ($cust as $item)
+                            <tr id="id_cust_{{$item->id}}">
+                              <td>{{$no}}</td>
+                              <td>{{$item->cust_name}}</td>
                               <td>
-                                <a href="" class="btn btn-social-icon btn-success">
+                                <a href="javascript:void(0)" id="editCust" data-id="{{$item->id}}" class="btn btn-social-icon btn-success">
                                   <i class="fa fa-edit"></i></a>
-                                <a href="" class="btn btn-social-icon btn-danger">
+                                <a href="javascript:void(0)" id="deleteCust" data-id="{{$item->id}}" class="btn btn-social-icon btn-danger">
                                   <i class="fa fa-trash"></i></a>
                               </td>
                             </tr>
-                            
+                            @php
+                                $no++;
+                            @endphp
+                            @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
                               <th>No.</th>
-                              <th>ID</th>
                               <th>Customer Name</th>
-                              <th>Address</th>
                               <th>Action</th>
                             </tr>
                             </tfoot>

@@ -40,10 +40,17 @@ Route::get('/job_type','DepartementController@JobTypeIndex')->name('JobType.inde
 Route::get('/job_type/cmbx/{id}','DepartementController@JobTypecmbx')->name('JobType.show');
 Route::post('/job_type/store','DepartementController@JobTypeStore')->name('JobType.store');
 Route::get('/job_type/destroy/{id}','DepartementController@JobTypeDestroy')->name('JobType.destroy');
+
+//Customer
+Route::get('/customer','CustomerController@CustomerIndex')->name('customer.index');
+Route::get('/customer/edit/{id}','CustomerController@CustomerEdit')->name('customerEdit.show');
+Route::post('/customer/store','CustomerController@CustomerStore')->name('customer.store');
+Route::get('/customer/destroy/{id}','CustomerController@CustomerDestroy')->name('customer.destroy');
+//Customer Site
+Route::get('/customer_site','CustomerController@CustomerSiteIndex')->name('customerSite.index');
+Route::get('/customer_site/edit/{id}','CustomerController@CustomerSiteEdit')->name('customerSiteEdit.show');
+Route::post('/customer_site/store','CustomerController@CustomerSiteStore')->name('customerSite.store');
+Route::get('/customer_site/destroy/{id}','CustomerController@CustomerSiteDestroy')->name('customerSite.destroy');
+
 //data
 Route::get('/satu', 'Controller@data1')->name('employee.index');
-Route::get('/dua', 'Controller@data2')->name('customer.index');
-Route::get('/tiga', 'Controller@data3')->name('customerSite.index');
-//Route::get('/addsatu', 'Controller@adddata1');
-//Route::get('/adddua', 'Controller@adddata2');
-//Route::get('/addtiga', 'Controller@adddata3');
