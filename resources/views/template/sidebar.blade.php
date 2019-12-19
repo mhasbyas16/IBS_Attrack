@@ -93,7 +93,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview {{Route::is('employee.index','customer.index','gitcustomerSite.index') ? 'menu-open':''}}">
+          <li class="nav-item has-treeview {{Route::is('JobType.index','Dept.index','DeptGroup.index','employee.index','customer.index','gitcustomerSite.index') ? 'menu-open':''}}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -109,19 +109,19 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('dept_grup.index')}}" class="nav-link {{Route::is('dept_grup.index') ? 'active':''}}">
+                <a href="{{route('DeptGroup.index')}}" class="nav-link {{Route::is('DeptGroup.index') ? 'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Department Group</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('dept.index')}}" class="nav-link {{Route::is('dept.index') ? 'active':''}}">
+                <a href="{{route('Dept.index')}}" class="nav-link {{Route::is('Dept.index') ? 'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Department </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('job_type.index')}}" class="nav-link {{Route::is('job_type.index') ? 'active':''}}">
+                <a href="{{route('JobType.index')}}" class="nav-link {{Route::is('JobType.index') ? 'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Job Type </p>
                 </a>

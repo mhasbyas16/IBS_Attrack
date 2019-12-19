@@ -33,54 +33,69 @@
                         <!-- begin data alat-->
                       <form class="form-horizontal">
                         <div class="box-body">
-                          <table id="pegawais" class="table table-bordered table-striped text-center">
+                          <table id="pegawais" width="100%" class="table table-bordered table-striped text-center">
                             <thead>
                             <tr>
                               <th>No.</th>
-                              <th>Date</th>
-                              <th>Employee ID</th>
-                              <th>Device Time</th>
-                              <th>Server Time</th>
-                              <th>Check In</th>
+                              <th>Name</th>
+                              <th>Date In</th>
+                              <th>Time In</th>
                               <th>Location In</th>
-                              <th>Check Out</th>
+                              <th>Date Out</th>
+                              <th>Time Out</th>
                               <th>Location Out</th>
+                              <th>subject</th>
                               <th>Action</th>
-
                             </tr>
                             </thead>
                             <tbody>
-                            
+                          @php
+                              $no=1;
+                          @endphp
+                          @foreach ($absensi as $item)
+                            @foreach ($item->pegawai as $i)
+                            @php
+                                $awal  = strtotime($item->device_time_in); //waktu awal
+                                $akhir = strtotime($item->server_time_in); //waktu akhir
+                                $diff  = $akhir - $awal;
+                                $jam   = floor($diff / (60 * 60));
+                                $menit = $diff - $jam * (60 * 60);
+                                $M     = floor( $menit/60);
+                            @endphp
                             <tr>
-                              <td>1</td>
-                              <td>10/12/2019</td>
-                              <td>12345</td>
-                              <td>08:00:00</td>
-                              <td>08:01:00</td>
-                              <td>08:00:00</td>
-                              <td>231,2312313</td>
-                              <td>18:00:00</td>
-                              <td>231,2312313</td>
+                              <td>{{$no}}</td>
+                              <td>{{$i->nama}}</td>
+                              <td>{{$item->device_date_in}}</td>
+                              <td>{{$item->device_time_in}}</td>
+                              <td>{{$item->loc_in}}</td>
+                              <td>{{$item->device_date_out}}</td>
+                              <td>{{$item->device_time_out}}</td>
+                              <td>{{$item->loc_out}}</td>
                               <td>
-                                <a href="" onclick="return confirm('Yakin ubah status menjadi diterima?')" class="btn btn-social-icon btn-success">
-                                  <i class="fa fa-check"></i></a>
-                                <a href="" onclick="return confirm('Yakin ubah status menjadi ditolak?')" class="btn btn-social-icon btn-danger">
-                                  <i class="fa fa-ban"></i></a>
+                                @if ($M>=5)
+                                <span class="right badge badge-danger">+$M</span>
+                                @endif
                               </td>
+                              <td>Action</td>
                             </tr>
+                            @php
+                                $no++;
+                            @endphp
+                            @endforeach
+                          @endforeach
                             
                             </tbody>
                             <tfoot>
                             <tr>
                               <th>No.</th>
-                              <th>Date</th>
-                              <th>Employee ID</th>
-                              <th>Device Time</th>
-                              <th>Server Time</th>
-                              <th>Check In</th>
+                              <th>Name</th>
+                              <th>Date In</th>
+                              <th>Time In</th>
                               <th>Location In</th>
-                              <th>Check Out</th>
+                              <th>Date Out</th>
+                              <th>Time Out</th>
                               <th>Location Out</th>
+                              <th>subject</th>
                               <th>Action</th>
                             </tr>
                             </tfoot>

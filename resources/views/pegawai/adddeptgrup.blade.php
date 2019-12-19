@@ -29,32 +29,24 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="box box-solid">
-                          <form class="form-horizontal" action="" method="">
+                          <form class="form-horizontal" action="{{route('DeptGroup.store')}}" method="post">
+                            {{ csrf_field() }}
                             <div class="box-body">
 
                               <div class="row col-md-12">
                                 <label class="col-md-12"><h4>Input Department Group</h4><hr></label>
                               </div>
-
-                              <div class="row col-md-12 mt-2">
-                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">ID</label>
-                                <div class="col-sm-5">
-                                    <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="" readonly>
-                                </div>
-                              </div>
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Department Group Name</label>
                                 <div class="col-sm-5">
-                                    <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                    <input type="text" class="form-control" name="deptgroup" id="iddept" value="" required>
                                 </div>
                               </div>
                             </div>
                             <div class="row mt-4 col-md-12">
                               <ul class="text-right col-md-8" style="padding-right: 10px">
-                                <button class="btn btn-success" href="#">Save</button>
-                                <button class="btn btn-secondary" href="#">Cancel</button>
+                                <button class="btn btn-success" name="y">Save</button>
+                                <input type="button" class="btn btn-secondary" id="x" onclick="clear()" value="Cancel">
                               </ul>
                             </div>
                             <hr>
@@ -70,29 +62,35 @@
                         <!-- begin data alat-->
                       <form class="form-horizontal">
                         <div class="box-body">
-                          <table id="pegawais" class="table table-bordered table-striped text-center">
+                          <table id="deptgroup" class="table table-bordered table-striped text-center">
                             <thead>
                             <tr>
-                              <th>ID</th>
+                              <th>No</th>
                               <th>Department Group Name</th>
                               <th>Action</th>
 
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                              <td>TC</td>
-                              <td>Technical</td>
+                          @php
+                              $no=1;
+                          @endphp
+                          @foreach ($dept as $item)
+                          <tr id="id_dept_{{$item->id}}">
+                              <td>{{$no}}</td>
+                              <td>{{$item->nama}}</td>
                               <td>
-                                <form action="" method="">
-                                    <input type="submit" class="btn btn-danger btn-sm" href="" value="Delete">
-                                </form>
+                                <a href="javascript:void(0)" id="deptGroupDel" data-id="{{$item->id}}" class="btn btn-danger btn-sm">Delete</a>
                               </td>
                             </tr>
+                            @php
+                                $no++;
+                            @endphp  
+                          @endforeach                            
                             </tbody>
                             <tfoot>
                             <tr>
-                              <th>ID</th>
+                              <th>No</th>
                               <th>Department Group Name</th>
                               <th>Action</th>
                             </tr>

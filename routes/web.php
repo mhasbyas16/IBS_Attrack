@@ -18,7 +18,7 @@ Route::get('/logout','LoginController@logout')->name('logout.destroy');
 Route::get('/dashboard', 'Controller@dash')->name('dash.index');
 
 //attendance
-Route::get('/att', 'Controller@att')->name('attendance.index');
+Route::get('/att', 'PresenceController@attendance')->name('attendance.index');
 
 //activity
 Route::get('/act', 'Controller@act')->name('activity.index');
@@ -26,12 +26,22 @@ Route::get('/act', 'Controller@act')->name('activity.index');
 //leaves
 Route::get('/leaves', 'Controller@leaves')->name('leaves.index');
 
-
+//Departement
+//deptgrup
+Route::get('/dept_group','DepartementController@DeptGroupIndex')->name('DeptGroup.index');
+Route::post('/dept_grup/store','DepartementController@DeptGroupStore')->name('DeptGroup.store');
+Route::get('/dept_grup/destroy/{id}','DepartementController@DeptGroupDestroy')->name('DeptGroup.destroy');
+//dept
+Route::get('/dept','DepartementController@DeptIndex')->name('Dept.index');
+Route::post('/dept/store','DepartementController@DeptStore')->name('Dept.store');
+Route::get('/dept/destroy/{id}','DepartementController@DeptDestroy')->name('Dept.destroy');
+//job
+Route::get('/job_type','DepartementController@JobTypeIndex')->name('JobType.index');
+Route::get('/job_type/cmbx/{id}','DepartementController@JobTypecmbx')->name('JobType.show');
+Route::post('/job_type/store','DepartementController@JobTypeStore')->name('JobType.store');
+Route::get('/job_type/destroy/{id}','DepartementController@JobTypeDestroy')->name('JobType.destroy');
 //data
 Route::get('/satu', 'Controller@data1')->name('employee.index');
-Route::get('/dept_grup', 'Controller@dept_grup')->name('dept_grup.index');
-Route::get('/dept', 'Controller@dept')->name('dept.index');
-Route::get('/job', 'Controller@job_type')->name('job_type.index');
 Route::get('/dua', 'Controller@data2')->name('customer.index');
 Route::get('/tiga', 'Controller@data3')->name('customerSite.index');
 //Route::get('/addsatu', 'Controller@adddata1');

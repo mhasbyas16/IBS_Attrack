@@ -14,4 +14,7 @@ class JobActivity extends Model
     public function aktivitas(){
         return $this->hasMany('App\Aktivitas');
     }
+    public function jabatan(){
+        return $this->belongsTo('App\Jabatan');
+    }
 }

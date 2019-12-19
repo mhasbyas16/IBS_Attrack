@@ -14,8 +14,8 @@ class Jabatan extends Model
     public function kelompokDept(){
         return $this->belongsTo('App\KelompokDept');
     }
-    public function jobTypes(){
-        return $this->hasMany('App\JobType');
+    public function jobActivities(){
+        return $this->hasMany('App\JobActivity');
     }
     public function pegawais(){
         return $this->hasMany('App\Pegawai');

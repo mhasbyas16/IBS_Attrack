@@ -31,19 +31,22 @@
                     <!-- jQuery Knob -->
                     <div class="box box-solid">
 
-                          <form class="form-horizontal" action="" method="">
+                          <form class="form-horizontal" action="{{route('JobType.store')}}" method="post">
+                            {{ csrf_field() }}
                             <div class="box-body">
 
                               <div class="row col-md-12">
                                 <label class="col-md-12"><h4>Input Job Type</h4><hr></label>
                               </div>
-
                               <div class="row col-md-12 mt-2">
-                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Department ID</label>
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Department Group Name</label>
                                 <div class="col-sm-5">
-                                  <div class="col-sm-5">
-                                    <select>
-                                      <option value="Choose Department ID">Choose Department ID</option>
+                                  <div class="col-sm-9">
+                                    <select class="form-control" id="IDKelDept" required>
+                                      <option value="" hidden>-- Select One ---</option>
+                                      @foreach ($data as $ii)
+                                      <option value="{{$ii->id}}">{{$ii->nama}}</option>
+                                      @endforeach
                                     </select>
                                   </div>
                                 </div>
@@ -51,29 +54,24 @@
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Department Name</label>
                                 <div class="col-sm-5">
-                                    <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="" readonly="">
+                                  <div class="col-sm-9">
+                                    <select class="form-control" id="DeptNama" name="IdDept" required>
+                                      <option value="">-- Select Group Department ---</option>
+                                    </select>
+                                  </div>
                                 </div>
                               </div>
                               <div class="row col-md-12 mt-2">
-                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">ID</label>
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Job Activity</label>
                                 <div class="col-sm-5">
-                                    <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="" readonly>
-                                </div>
-                              </div>
-                              <div class="row col-md-12 mt-2">
-                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Job Type</label>
-                                <div class="col-sm-5">
-                                    <input type="text" name="idd" id="idd" value="" hidden="true">
-                                    <input type="text" class="form-control" name="idat" id="idat" value="">
+                                    <input type="text" class="form-control" name="job" id="Job" required>
                                 </div>
                               </div>
                             </div>
                             <div class="row mt-4 col-md-12">
                               <ul class="text-right col-md-8" style="padding-right: 10px">
                                 <button class="btn btn-success" href="#">Save</button>
-                                <button class="btn btn-secondary" href="#">Cancel</button>
+                                <input type="button" class="btn btn-secondary" id="x3" onclick="clear2()" value="Cancel">
                               </ul>
                             </div>
                           </form>
@@ -94,34 +92,48 @@
                           <table id="pegawais" class="table table-bordered table-striped text-center">
                             <thead>
                             <tr>
-                              <th>Department ID</th>
+                              <th>No</th>
+                              <th>Department Group Name</th>
                               <th>Department Name</th>
-                              <th>ID</th>
-                              <th>Job Type</th>
-                              <th>Action</th>
-
+                              <th>Job Activity</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @php
+                                $no=1;
+                            @endphp
+                            @foreach ($data as $p)
+                            @foreach ($p->jabatans as $d)
+                    
                             <tr>
-                              <td>TC001</td>
-                              <td>Programmer</td>
-                              <td>1</td>
-                              <td>Membuat Mock Up Aplikasi</td>
+                              <td>{{$no}}</td>
+                              <td>{{$p->nama}}</td>
+                              <td>{{$d->nama}}</td>
                               <td>
-                                <form action="" method="">
-                                    <input type="submit" class="btn btn-danger btn-sm" href="" value="Delete">
-                                </form>
-                              </td>
+                                <table>
+                                @foreach ($d->jobActivities as $ti)
+                                <tr id="id_job_{{$ti->id}}">
+                                  <td>- {{$ti->jenis_kegiatan}}</td>
+                                  <td>
+                                    <a href="javascript:void(0)" id="JobTypeDel" data-id="{{$ti->id}}" class="btn btn-danger btn-sm">Delete</a>
+                                  </td>
+                                </tr>
+                                @endforeach
+                                </table>
+                                </td> 
                             </tr>
+                            @php
+                                $no++;
+                            @endphp   
+                            @endforeach
+                            @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
-                              <th>Department ID</th>
+                              <th>No</th>
+                              <th>Department Group Name</th>
                               <th>Department Name</th>
-                              <th>ID</th>
-                              <th>Job Type</th>
-                              <th>Action</th>
+                              <th>Job Activity</th>
                             </tr>
                             </tfoot>
                           </table>
