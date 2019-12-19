@@ -14,11 +14,11 @@ class CreateLeavesTable extends Migration
     public function up()
     {
         Schema::create('leaves', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->autoIncrement();
             $table->bigInteger('pegawai_id');
             $table->bigInteger('table_code_id')->nullable();
             $table->date('date');
-            $table->enum('type',['izin','sakit']);
+            $table->bigInteger('leave_type_id');
             $table->string('foto')->default('0');
             $table->timestamps();
         });

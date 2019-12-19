@@ -14,7 +14,7 @@ class CreateKelompokDeptsTable extends Migration
     public function up()
     {
         Schema::create('kelompok_depts', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id',3)->autoIncrement();
             $table->string('nama');
             $table->timestamps();
         });

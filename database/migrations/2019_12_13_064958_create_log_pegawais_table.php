@@ -14,7 +14,7 @@ class CreateLogPegawaisTable extends Migration
     public function up()
     {
         Schema::create('log_pegawais', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->autoIncrement();
             $table->bigInteger('pegawai_id');
             $table->string('imei_phone');
             $table->string('message',50);

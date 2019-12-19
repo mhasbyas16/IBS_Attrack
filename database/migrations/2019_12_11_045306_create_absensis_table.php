@@ -14,7 +14,7 @@ class CreateAbsensisTable extends Migration
     public function up()
     {
         Schema::create('absensis', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->autoIncrement();
             $table->bigInteger('pegawai_id');
             $table->bigInteger('table_code_id')->nullable();
             $table->time('server_time_in');

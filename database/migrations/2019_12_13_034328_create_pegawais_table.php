@@ -14,7 +14,7 @@ class CreatePegawaisTable extends Migration
     public function up()
     {
         Schema::create('pegawais', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->autoIncrement();
             $table->string('nip',10)->unique();
             $table->string('password');
             $table->bigInteger('jabatan_id')->default(0);
@@ -22,7 +22,7 @@ class CreatePegawaisTable extends Migration
             $table->enum('gender',['lk','pr',''])->default('');
             $table->string('email')->default('0');
             $table->text('address')->nullable();
-            $table->string('imei')->unique();
+            $table->string('imei');
             $table->timestamps();
         });
     }

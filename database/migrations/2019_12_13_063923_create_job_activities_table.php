@@ -14,7 +14,7 @@ class CreateJobActivitiesTable extends Migration
     public function up()
     {
         Schema::create('job_activities', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->autoIncrement();
             $table->bigInteger('jabatan_id');
             $table->string('jenis_kegiatan');
             $table->timestamps();
