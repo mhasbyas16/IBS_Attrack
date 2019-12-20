@@ -170,7 +170,7 @@
                     <div class="description-block border-right">
                       <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 50%</span>
                       <h5 class="description-header">25 Records</h5>
-                      <span class="description-text">ATTENDANCE'S LEVEL PREV MONTH</span>
+                      <span class="description-text">Attendance's Level Prev Month</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -179,7 +179,7 @@
                     <div class="description-block border-right">
                       <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 80%</span>
                       <h5 class="description-header">40 Records</h5>
-                      <span class="description-text">ATTENDANCE'S LEVEL THIS MONTH</span>
+                      <span class="description-text">Attendance's Level This Month</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -188,7 +188,7 @@
                     <div class="description-block border-right">
                       <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 100</span>
                       <h5 class="description-header">15 Employees</h5>
-                      <span class="description-text">TOTAL ACTIVITY</span>
+                      <span class="description-text">Total Activities</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -197,7 +197,7 @@
                     <div class="description-block">
                       <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 6</span>
                       <h5 class="description-header">6 Employees</h5>
-                      <span class="description-text">TOTAL LEAVE</span>
+                      <span class="description-text">Total Employees</span>
                     </div>
                     <!-- /.description-block -->
                   </div>

@@ -57,7 +57,7 @@
 
           <li class="nav-item has-treeview {{Route::is('attendance.index','activity.index','leaves.index') ? 'menu-open':''}}">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fa fa-compass"></i>
               <p>
                 Presence
                 <i class="right fas fa-angle-left"></i>
@@ -66,7 +66,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('attendance.index')}}" class="nav-link {{Route::is('attendance.index') ? 'active':''}}">
-                  <i class="nav-icon fas fa-th"></i>
+                  <i class="far fa-circle nav-icon"></i>
                   <p>
                     Attendance
                     <span class="right badge badge-danger">New</span>
@@ -75,7 +75,7 @@
               </li>
               <li class="nav-item">
                 <a href="{{route('activity.index')}}" class="nav-link {{Route::is('activity.index') ? 'active':''}}">
-                  <i class="nav-icon fas fa-edit"></i>
+                  <i class="far fa-circle nav-icon"></i>
                   <p>
                     Activity
                     <span class="right badge badge-danger">New</span>
@@ -84,7 +84,7 @@
               </li>
               <li class="nav-item">
                 <a href="{{route('leaves.index')}}" class="nav-link {{Route::is('leaves.index') ? 'active':''}}">
-                  <i class="nav-icon fas fa-tree"></i>
+                  <i class="far fa-circle nav-icon"></i>
                   <p>
                     Leaves
                     <span class="right badge badge-danger">New</span>
@@ -93,9 +93,10 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview {{Route::is('JobType.index','Dept.index','DeptGroup.index','employee.index','customer.index','gitcustomerSite.index') ? 'menu-open':''}}">
+
+          <li class="nav-item has-treeview {{Route::is('employeeAdd.index','employee.index') ? 'menu-open':''}}">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fa fa-street-view"></i>
               <p>
                 Employee
                 <i class="right fas fa-angle-left"></i>
@@ -103,11 +104,29 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="{{route('employeeAdd.index')}}" class="nav-link {{Route::is('employeeAdd.index') ? 'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Employee</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{route('employee.index')}}" class="nav-link {{Route::is('employee.index') ? 'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Employee List</p>
                 </a>
               </li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview {{Route::is('JobType.index','Dept.index','DeptGroup.index','employee.index','customer.index','gitcustomerSite.index') ? 'menu-open':''}}">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-tasks"></i>
+              <p>
+                Department
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('DeptGroup.index')}}" class="nav-link {{Route::is('DeptGroup.index') ? 'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
@@ -128,9 +147,10 @@
               </li>
             </ul>
           </li>
+
           <li class="nav-item has-treeview {{Route::is('customer.index','gitcustomerSite.index') ? 'menu-open':''}}">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fa fa-id-badge"></i>
               <p>
                 Customer
                 <i class="right fas fa-angle-left"></i>
@@ -150,6 +170,15 @@
                 </a>
               </li>
             </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{route('setting.index')}}" class="nav-link {{Route::is('setting.index') ? 'active':''}}">
+              <i class="nav-icon fa fa-wrench"></i>
+              <p>
+                Setting
+              </p>
+            </a>
           </li>
         </ul>
       </nav>

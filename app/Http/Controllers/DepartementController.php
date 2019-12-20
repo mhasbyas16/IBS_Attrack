@@ -13,7 +13,7 @@ class DepartementController extends Controller
     public function DeptGroupIndex(){
         $dept=KelompokDept::all();
 
-        return view ('pegawai.adddeptgrup',[
+        return view ('department.adddeptgrup',[
             'dept'=>$dept
         ]);
     }
@@ -36,7 +36,7 @@ class DepartementController extends Controller
     public function DeptIndex(){
         $cmbx=KelompokDept::with('jabatans')->orderBy('nama','asc')->get();
 
-        return view ('pegawai.adddept',[
+        return view ('department.adddept',[
             'cmbx'=>$cmbx
         ]);
     }
@@ -58,7 +58,7 @@ class DepartementController extends Controller
 public function JobTypeIndex(){
     $data=KelompokDept::with('jabatans','jabatans.jobActivities')->orderBy('nama','asc')->get();
 
-    return view ('pegawai.addjobtype',[
+    return view ('department.addjobtype',[
         'data'=>$data
     ]);
 }
