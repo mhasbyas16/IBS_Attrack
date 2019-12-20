@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add New Employee</h1>
+            <h1>Setting Account</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -22,7 +22,7 @@
             <div class="card card-primary">
               <div class="card-header">
                 <div class="card-title">
-                  New Employee
+                  Setting Your Account
                 </div>
               </div>
               <div class="card-body">
@@ -32,64 +32,64 @@
                     <div class="box box-solid">
 
                           <form class="form-horizontal" action="" method="">
+                            {{ csrf_field() }}
                             <div class="box-body">
 
                               <div class="row col-md-12">
-                                <label class="col-md-12"><h4>Input Data Employee</h4><hr></label>
+                                <label class="col-md-12"><h4>Account Detail</h4><hr></label>
                               </div>
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">NIP</label>
                                 <div class="col-sm-5">
-                                  <input type="text" class="form-control" name="nip" id="nip" required="">
+                                  <input type="text" class="form-control" name="nip" id="nip" readonly="">
                                 </div>
                               </div>
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Name</label>
                                 <div class="col-sm-5">
-                                  <input type="text" class="form-control" name="nama" id="nama" required="">
+                                  <input type="text" class="form-control" name="name" id="name" readonly="">
                                 </div>
                               </div>
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Jabatan</label>
                                 <div class="col-sm-5">
-                                  <input type="text" class="form-control" name="jabatan" id="jabatan" required="">
+                                  <input type="text" class="form-control" name="jabatan" id="jabatan" readonly="">
                                 </div>
                               </div>
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Jenis Kelamin</label>
                                 <div class="col-sm-5">
-                                  <input type="text" class="form-control" name="jk" id="jk" required="">
+                                  <input type="text" class="form-control" name="jk" id="jk" readonly="">
                                 </div>
                               </div>
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">E-Mail</label>
                                 <div class="col-sm-5">
-                                  <input type="text" class="form-control" name="email" id="email" required="">
+                                  <input type="text" class="form-control" name="email" id="email" readonly="">
                                 </div>
                               </div>
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Alamat</label>
                                 <div class="col-sm-5">
-                                  <input type="text" class="form-control" name="alamat" id="alamat" required="">
+                                  <input type="text" class="form-control" name="alamat" id="alamat" readonly="">
                                 </div>
                               </div>
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">IMEI</label>
                                 <div class="col-sm-5">
-                                  <input type="text" class="form-control" name="imei" id="imei" required="">
+                                  <input type="text" class="form-control" name="imei" id="imei" readonly="">
                                 </div>
                               </div>
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Password</label>
                                 <div class="col-sm-5">
-                                  <input type="text" class="form-control" name="password" id="password" required="">
+                                  <input type="text" class="form-control" name="password" id="password" readonly="">
                                 </div>
                               </div>
                             </div>
                             <div class="row mt-4 col-md-12">
                               <ul class="text-right col-md-8" style="padding-right: 10px">
-                                <button class="btn btn-success" href="#">Save</button>
-                                <button class="btn btn-danger" href="#">Cancel</button>
+                                <button class="btn btn-success" href="#">Edit</button>
                               </ul>
                             </div>
                           </form>

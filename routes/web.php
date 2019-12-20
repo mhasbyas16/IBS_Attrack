@@ -52,5 +52,9 @@ Route::get('/customer_site/edit/{id}','CustomerController@CustomerSiteEdit')->na
 Route::post('/customer_site/store','CustomerController@CustomerSiteStore')->name('customerSite.store');
 Route::get('/customer_site/destroy/{id}','CustomerController@CustomerSiteDestroy')->name('customerSite.destroy');
 
-//data
-Route::get('/satu', 'Controller@data1')->name('employee.index');
+//Employee
+Route::get('/employee', 'Controller@employee')->name('employee.index');
+Route::get('/employee_add', 'Controller@employeeAdd')->name('employeeAdd.index');
+
+//setting
+Route::get('/setting', 'Controller@setting')->name('setting.index');

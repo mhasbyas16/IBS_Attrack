@@ -27,8 +27,12 @@ class Controller extends BaseController
         return view('presensi.leaves');
     }
 
-    public function data1(){
+    public function employee(){
         return view('pegawai.listemployee');
+    }
+
+    public function employeeAdd(){
+        return view('pegawai.addemployee');
     }
 
     public function dept_grup(){
@@ -61,5 +65,9 @@ class Controller extends BaseController
 
     public function adddata3(){
         return view('customer.addcustside');
+    }
+
+    public function setting(){
+        return view('pegawai.setting');
     }
 }
