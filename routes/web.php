@@ -21,7 +21,7 @@ Route::get('/dashboard', 'Controller@dash')->name('dash.index');
 Route::get('/att', 'PresenceController@attendance')->name('attendance.index');
 
 //activity
-Route::get('/act', 'Controller@act')->name('activity.index');
+Route::get('/act', 'PresenceController@activity')->name('activity.index');
 
 //leaves
 Route::get('/leaves', 'Controller@leaves')->name('leaves.index');

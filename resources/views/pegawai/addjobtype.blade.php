@@ -89,9 +89,9 @@
                         <!-- begin data alat-->
                       <form class="form-horizontal">
                         <div class="box-body">
-                          <table id="pegawais" class="table table-bordered table-striped text-center">
+                          <table id="pegawais" class="table table-bordered table-striped">
                             <thead>
-                            <tr>
+                            <tr class="text-center">
                               <th>No</th>
                               <th>Department Group Name</th>
                               <th>Department Name</th>
@@ -106,7 +106,7 @@
                             @foreach ($p->jabatans as $d)
                     
                             <tr>
-                              <td>{{$no}}</td>
+                              <td class="text-center">{{$no}}</td>
                               <td>{{$p->nama}}</td>
                               <td>{{$d->nama}}</td>
                               <td>
@@ -129,7 +129,7 @@
                             @endforeach
                             </tbody>
                             <tfoot>
-                            <tr>
+                            <tr class="text-center">
                               <th>No</th>
                               <th>Department Group Name</th>
                               <th>Department Name</th>
