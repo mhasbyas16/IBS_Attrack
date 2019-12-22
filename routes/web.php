@@ -19,6 +19,7 @@ Route::get('/dashboard', 'Controller@dash')->name('dash.index');
 
 //attendance
 Route::get('/att', 'PresenceController@attendance')->name('attendance.index');
+Route::get('/att/export/{first}/{end}', 'PresenceController@attendanceExport')->name('attendance.export');
 
 //activity
 Route::get('/act', 'PresenceController@activity')->name('activity.index');

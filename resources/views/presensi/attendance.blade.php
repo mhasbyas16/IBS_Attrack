@@ -33,6 +33,7 @@
                         <!-- begin data alat-->
                       <form class="form-horizontal">
                         <div class="box-body">
+                          <a href="{{route('attendance.export',['first'=>$first,'end'=>$end])}}" class="btn btn-primary">Export</a><br><br>
                           <table id="pegawais" width="100%" class="table table-bordered table-striped text-center">
                             <thead>
                             <tr>
@@ -155,7 +156,6 @@
                                   </div>
                                   <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
                                   </div>
                                 </div>
                                 <!-- /.modal-content -->
