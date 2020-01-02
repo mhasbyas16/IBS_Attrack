@@ -26,6 +26,25 @@
                 </div>
               </div>
               <div class="card-body">
+                <form id="SearchAttendance" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                <div class="row">
+                  <div class="col-sm-3 col-md-3">
+                    <input type="date" class="form-control float-right" name="min" id="min" value="{{$first}}">
+                      
+                  </div>
+                  <div class="col-sm-1 col-md-1">
+                   <b> <hr> </b>
+                  </div>
+                  <div class="col-sm-3 col-md-3">
+                       <input type="date" class="form-control float-right" name="max" id="max" value="{{$end}}">
+                  </div>
+                  <div class="col-sm-2 col-md-2">
+                    <button type="submit" class="btn btn-default" id="searchAtt"><i class="fas fa-search"></i></button>
+                  </div>
+                </div>
+              </form>
+              <br>
                 <div class="row">
                   <div class="col-xs-12">
                       <!-- jQuery Knob -->
@@ -33,7 +52,8 @@
                         <!-- begin data alat-->
                       <form class="form-horizontal">
                         <div class="box-body">
-                          <a href="{{route('attendance.export',['first'=>$first,'end'=>$end])}}" class="btn btn-primary">Export</a><br><br>
+                            <a href="{{route('attendance.export',['first'=>$first,'end'=>$end])}}" id="export" class="btn btn-primary">Export</a><br><br>
+                          
                           <table id="pegawais" width="100%" class="table table-bordered table-striped text-center">
                             <thead>
                             <tr>
@@ -47,26 +67,13 @@
                               <th>Action</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="isiTB">
                           @php
                               $no=0;
                           @endphp
                           @foreach ($absensi as $item)
                             @php
                                 $no++;
-                                $awal  = strtotime("".$item->server_date_in." ".$item->server_time_in.""); //waktu awal
-                                $akhir = strtotime("".$item->device_date_in." ".$item->device_time_in.""); //waktu akhir
-                                $diff  = $akhir - $awal;
-                                $jam   = floor($diff / (60 * 60));
-                                $menit = $diff - $jam * (60 * 60);
-                                $M     = floor( $menit/60);
-
-                                $awal2  = strtotime("".$item->server_date_out." ".$item->server_time_out.""); //waktu awal
-                                $akhir2 = strtotime("".$item->device_date_out." ".$item->device_time_out.""); //waktu akhir
-                                $diff2  = $akhir2 - $awal2;
-                                $jam2   = floor($diff2 / (60 * 60));
-                                $menit2 = $diff2 - $jam2 * (60 * 60);
-                                $M2     = floor( $menit2/60);
                             @endphp
                             <tr>
                               <td>{{$no}}.</td>
@@ -75,94 +82,17 @@
                               <td><a href="https://www.google.com/maps/search/{{$item->loc_in}}" target="_blank">{{$item->loc_in}}</a></td>
                               <td>{{$item->device_date_out}} {{$item->device_time_out}}</td>
                               <td><a href="https://www.google.com/maps/search/{{$item->loc_out}}" target="_blank">{{$item->loc_out}}</a></td>
-                              <td>
-                                @if ($M>=5 AND $jam>0)
-                                <span class="right badge badge-danger">+{{$jam}}h{{$M}}m</span>&nbsp;
-                                @endif 
+                              <td> 
                                 @if ($item->status=="telat")
                                 <span class="right badge badge-danger">Telat</span>
                                 @endif
 
                               </td>
                               <td style="width:50px;">
-                                <a href="" class="btn btn-social-icon btn-info" data-toggle="modal" data-target="#modal-lg-{{$no}}">
+                                <a href="{{route('attendance.detail',['id'=>$item->id,'N'=>$first,'X'=>$end])}}" class="btn btn-social-icon btn-info">
                                   <i class="fa fa-info-circle"></i></a>
                               </td>
                             </tr>
-
-                            <!--MODAL-->
-                            <div class="modal fade" id="modal-lg-{{$no}}">
-                              <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h4 class="modal-title">Attendance 
-                                      @if ($item->status=="telat")
-                                      <span class="right badge badge-danger">Telat</span>
-                                      @endif
-                                    </h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <div class="row">
-                                      <div class="col-md-12 col-sm-12">
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Nama</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->pegawai->nama}}</div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Server Date/Time In</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->server_date_in}}/{{$item->server_time_in}}</div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Device Date/Time In</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->device_date_in}}/{{$item->device_time_in}} 
-                                            @if ($M>=5 AND $jam>0)
-                                            <span class="right badge badge-danger">+{{$jam}}h{{$M}}m</span>&nbsp;
-                                            @endif
-                                          </div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Location In</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7"><a href="https://www.google.com/maps/search/{{$item->loc_in}}" target="_blank">{{$item->loc_in}}</a></div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Server Date/Time Out</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->server_date_out}}/{{$item->server_time_out}}</div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Device Date/Time Out</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->device_date_out}}/{{$item->device_time_out}}
-                                            @if ($M2>=5 AND $jam2>0)
-                                            <span class="right badge badge-danger">+{{$jam2}}h{{$M2}}m</span>&nbsp;
-                                            @endif
-                                          </div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Location Out</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7"><a href="https://www.google.com/maps/search/{{$item->loc_out}}" target="_blank">{{$item->loc_out}}</a></div>
-                                        </div>
-                                        <hr>
-                                      </div>                                    
-                                    </div>
-                                  </div>
-                                  <div class="modal-footer justify-content-between">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                  </div>
-                                </div>
-                                <!-- /.modal-content -->
-                              </div>
-                              <!-- /.modal-dialog -->
-                            </div>
-                            <!-- /.modal -->
                           @endforeach
                             
                             </tbody>
@@ -187,6 +117,7 @@
                   </div>
                     <!-- /.col -->
                 </div>
+                <div id="kuy"></div>
               </div>
             </div>
           </div>

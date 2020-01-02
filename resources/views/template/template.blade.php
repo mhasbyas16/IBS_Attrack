@@ -12,19 +12,19 @@
   <title>IBS Attrack Administrator</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('plugins/fontawesome-free/css/all.min.css')}}">
   <!-- DataTables -->
-  <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
   <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="{{asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
   <!-- Toastr -->
-  <link rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('plugins/toastr/toastr.min.css')}}">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('dist/css/adminlte.min.css')}}">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
@@ -59,36 +59,36 @@
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{URL::asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
-<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{URL::asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- overlayScrollbars -->
-<script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+<script src="{{URL::asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('dist/js/adminlte.js')}}"></script>
+<script src="{{URL::asset('dist/js/adminlte.js')}}"></script>
 <!-- SweetAlert2 -->
-<script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{URL::asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <!-- Toastr -->
-<script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
+<script src="{{URL::asset('plugins/toastr/toastr.min.js')}}"></script>
 
 <!-- OPTIONAL SCRIPTS -->
-<script src="{{asset('dist/js/demo.js')}}"></script>
+<script src="{{URL::asset('dist/js/demo.js')}}"></script>
 <!-- DataTables -->
-<script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
-<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+<script src="{{URL::asset('plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{URL::asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
 
 <!-- PAGE PLUGINS -->
 <!-- jQuery Mapael -->
-<script src="{{asset('plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
-<script src="{{asset('plugins/raphael/raphael.min.js')}}"></script>
-<script src="{{asset('plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
-<script src="{{asset('plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
+<script src="{{URL::asset('plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
+<script src="{{URL::asset('plugins/raphael/raphael.min.js')}}"></script>
+<script src="{{URL::asset('plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
+<script src="{{URL::asset('plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
 <!-- ChartJS -->
-<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
+<script src="{{URL::asset('plugins/chart.js/Chart.min.js')}}"></script>
 <!-- PAGE SCRIPTS -->
-<script src="{{asset('dist/js/pages/dashboard2.js')}}"></script>
+<script src="{{URL::asset('dist/js/pages/dashboard2.js')}}"></script>
 <!-- custom js-->
-<script src="{{asset('js/system.js')}}"></script>
+<script src="{{URL::asset('js/system.js')}}"></script>
 <!-- AJAX -->
 @include("template.ajax")
 </body>

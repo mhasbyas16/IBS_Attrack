@@ -230,5 +230,125 @@
         }     
       });
 
+//ATTENDANCE SEARCH DATE
+  $("body").on("click","#searchAtt", function(e){
+    e.preventDefault();
+    var N = $("#min").val();
+    var X = $("#max").val();
+    $.ajax({
+      method : "POST",
+      url : "{{url('/att/search')}}",
+      data : {
+        min : N,
+        max : X,
+      },
+      success : function(TB){
+        console.log(TB);
+        $("#export").attr("href", "{{url('/att/export')}}/"+N+"/"+X);
+        //var export ="";
+        //$("#export").text("<a href='' class='btn btn-primary'>axExport</a><br><br>");
+        $("#isiTB").empty();
+
+        var NO=0;
+
+        $.each(TB, function(key,value){
+          ++NO;
+          var URL = "{{url('/att/detail/emp')}}/"+value.id+"/"+N+"/"+X;
+          if (value.status=="telat") {
+            var alert="<span class='right badge badge-danger'>Telat</span>";
+          }else{
+            var alert ="";
+          }
+
+          $("#isiTB").append(
+                
+          "<tr>"
+              +"<td>"+NO+"</td>"
+              +"<td>"+value.pegawai.nama+"</td>"
+              +"<td>"+value.device_date_in+" "+value.device_time_in+"</td>"
+              +"<td><a href='https://www.google.com/maps/search/"+value.loc_in+"' target='_blank'>"+value.loc_in+"</a></td>"
+              +"<td>"+value.device_date_out+" "+value.device_time_out+"</td>"
+              +"<td><a href='https://www.google.com/maps/search/"+value.loc_out+"' target='_blank'>"+value.loc_out+"</a></td>"
+              +"<td>"
+                  +alert
+              +"</td>"
+              +"<td style='width:50px;'>"
+                  +"<a href='"+URL+"' target='_blank' class='btn btn-social-icon btn-info'>"
+                    +"<i class='fa fa-info-circle'></i></a>"
+              +"</td>"
+              +"</tr>"
+
+              +"<div class='modal fade' id='modal-lg-"+NO+"'>"
+                              +"<div class='modal-dialog modal-lg'>"
+                                +"<div class='modal-content'>"
+                                  +"<div class='modal-header'>"
+                                    +"<h4 class='modal-title'>Attendance"
+                                    +"</h4>"
+                                    +"<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"
+                                      +"<span aria-hidden='true'>&times;</span>"
+                                    +"</button>"
+                                  +"</div>"
+                                  +"<div class='modal-body'>"
+                                    +"<div class='row'>"
+                                      +"<div class='col-md-12 col-sm-12'>"
+                                        +"<div class='row'>"
+                                          +"<div class='col-md-4 col-sm-4'>Nama</div>"
+                                          +"<div class='col-md-1 col-sm-1'>:</div>"
+                                          +"<div class='col-md-7 col-sm-7'>"+value.pegawai.nama+"</div>"
+                                        +"</div>"
+                                        +"<div class='row'>"
+                                          +"<div class='col-md-4 col-sm-4'>Server Date/Time In</div>"
+                                          +"<div class='col-md-1 col-sm-1'>:</div>"
+                                          +"<div class='col-md-7 col-sm-7'>"+value.server_date_in+"/"+value.server_time_in+"</div>"
+                                        +"</div>"
+                                        +"<div class='row'>"
+                                          +"<div class='col-md-4 col-sm-4'>Device Date/Time In</div>"
+                                          +"<div class='col-md-1 col-sm-1'>:</div>"
+                                          +"<div class='col-md-7 col-sm-7'>"+value.device_date_in+"/"+value.device_time_in+""                                           
+                                          +"</div>"
+                                        +"</div>"
+                                        +"<div class='row'>"
+                                          +"<div class='col-md-4 col-sm-4'>Location In</div>"
+                                          +"<div class='col-md-1 col-sm-1'>:</div>"
+                                          +"<div class='col-md-7 col-sm-7'><a href='https://www.google.com/maps/search/"+value.loc_in+"' target='_blank'>"+value.loc_in+"</a></div>"
+                                        +"</div>"
+                                        +"<div class='row'>"
+                                          +"<div class='col-md-4 col-sm-4'>Server Date/Time Out</div>"
+                                          +"<div class='col-md-1 col-sm-1'>:</div>"
+                                          +"<div class='col-md-7 col-sm-7'>"+value.server_date_out+"/"+value.server_time_out+"</div>"
+                                        +"</div>"
+                                        +"<div class='row'>"
+                                          +"<div class='col-md-4 col-sm-4'>Device Date/Time Out</div>"
+                                          +"<div class='col-md-1 col-sm-1'>:</div>"
+                                          +"<div class='col-md-7 col-sm-7'>"+value.device_date_out+"/"+value.device_time_out+""
+                                           
+                                          +"</div>"
+                                        +"</div>"
+                                        +"<div class='row'>"
+                                          +"<div class='col-md-4 col-sm-4'>Location Out</div>"
+                                          +"<div class='col-md-1 col-sm-1'>:</div>"
+                                          +"<div class='col-md-7 col-sm-7'><a href='https://www.google.com/maps/search/"+value.loc_out+"' target='_blank'>"+value.loc_out+"</a></div>"
+                                        +"</div>"
+                                        +"<hr>"
+                                      +"</div>"                                    
+                                    +"</div>"
+                                  +"</div>"
+                                  +"<div class='modal-footer justify-content-between'>"
+                                    +"<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>"
+                                  +"</div>"
+                                +"</div>"
+                                
+                              +"</div>"
+                              
+                            +"</div>"
+      );
+
+  
+        });
+              
+      }
+    });
+  });
+
     });
 </script>

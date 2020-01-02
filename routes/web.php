@@ -20,12 +20,13 @@ Route::get('/dashboard', 'Controller@dash')->name('dash.index');
 //attendance
 Route::get('/att', 'PresenceController@attendance')->name('attendance.index');
 Route::get('/att/export/{first}/{end}', 'PresenceController@attendanceExport')->name('attendance.export');
-
+Route::post('/att/search','PresenceController@Searchattendance')->name('attendanceSearch.store');
+Route::get('/att/detail/emp/{id}/{N}/{X}','PresenceController@DetailEMP')->name('attendance.detail');
 //activity
 Route::get('/act', 'PresenceController@activity')->name('activity.index');
 
 //leaves
-Route::get('/leaves', 'Controller@leaves')->name('leaves.index');
+Route::get('/leaves', 'LeavesController@leaves')->name('leaves.index');
 
 //Departement
 //deptgrup

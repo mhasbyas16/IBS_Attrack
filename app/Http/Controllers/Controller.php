@@ -23,9 +23,7 @@ class Controller extends BaseController
         return view('presensi.attendance');
     }
 
-    public function leaves(){
-        return view('presensi.leaves');
-    }
+    
 
     public function employee(){
         return view('pegawai.listemployee');

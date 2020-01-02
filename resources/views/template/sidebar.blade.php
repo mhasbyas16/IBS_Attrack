@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <img src="dist/img/logo.png" class="brand-image img-circle elevation-3"
+    <a href="javascript:void(0)" class="brand-link">
+      <img src="{{asset('dist/img/logo.png')}}" class="brand-image img-circle elevation-3"
            style="opacity: .8; margin-left: 10px">
       <span class="brand-text font-weight-light" style="padding-left: 5px"><strong>Admin IBS Attrack</strong></span>
     </a>
@@ -13,9 +13,9 @@
         <div class="info">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+              <a href="javascript:void(0)" class="nav-link">
                 <div class="image pl-1">
-                  <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                  <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <p class="pl-2">
                      {{Session::get('nama')}}
@@ -23,7 +23,7 @@
               </a>
               <ul class="nav nav-treeview text-center m-1">
                 <li class="nav-item">
-                  <a href="pages/layout/top-nav.html" class="nav-link">
+                  <a href="{{asset('pages/layout/top-nav.html')}}" class="nav-link">
                     <form class="form-inline pl-1" action="#" method="#">
                       <a href="#">
                         <button type="button" class="btn btn-block btn-primary">Account</button>

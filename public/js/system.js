@@ -1,6 +1,13 @@
 //DATATABLES
+$(document).ready(function() {
+    var table = $('#pegawais').DataTable();
+
+    // Add event listeners to the two range filtering inputs
+    $('#min').keyup( function() { table.draw(); } );
+    $('#max').keyup( function() { table.draw(); } );
+} );
 $(function () {
-    $("#pegawais,#deptgroup").DataTable();
+    $("#deptgroup").DataTable();
 });
 
 //DEPARTEMENT

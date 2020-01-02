@@ -18,7 +18,30 @@ class PresenceController extends Controller
         return view('presensi.attendance',[
             'absensi'=>$absensi,
             'first'=>$first,
-            'end'=>$end
+            'end'=>$end,
+        ]);
+    }
+    public function Searchattendance(Request $req){
+        $first=$req->min;
+        $end=$req->max;
+        $absensi=Absensi::with('pegawai')->whereBetween('server_date_in',[$first,$end])->get();
+        
+       /* return view('presensi.attendance',[
+            'absensi'=>$absensi,
+            'first'=>$first,
+            'end'=>$end,
+        ]);*/
+        return response()->json($absensi);
+    }
+    public function DetailEMP($id,$N,$X){
+        $first=$N;
+        $end=$X;
+        $item=Absensi::with('pegawai')->whereBetween('server_date_in',[$first,$end])->where('id',$id)->first();
+        
+        return view('presensi.attendance_detail',[
+            'item'=>$item,
+            'first'=>$first,
+            'end'=>$end,
         ]);
     }
     public function attendanceExport($first,$end){

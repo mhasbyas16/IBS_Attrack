@@ -37,24 +37,29 @@
                             <thead>
                             <tr>
                               <th>No.</th>
+                              <th>Name</th>
                               <th>Date</th>
-                              <th>Employee ID</th>
                               <th>Type</th>
                               <th>Reason</th>
-                              <th>Status</th>
+                              <th>Foto</th>
                               <th>Action</th>
-
                             </tr>
                             </thead>
                             <tbody>
-                            
+                            @php
+                                $no=0;
+                            @endphp
+                            @foreach ($leave as $item)
+                              @php
+                                  $no++;
+                              @endphp
                             <tr>
-                              <td>1</td>
-                              <td>10/12/2019</td>
-                              <td>12345</td>
-                              <td>Req Cuti</td>
-                              <td>Cuti 5 hari pulkam</td>
-                              <td>Request</td>
+                              <td>{{$no}}.</td>
+                              <td>{{$item->pegawai->nama}}</td>
+                              <td>{{$item->date}}</td>
+                              <td>{{$item->leaveType->type}}</td>
+                              <td>{{$item->reason}}</td>
+                              <td><img src="{{$item->foto}}" style="height:100px;" alt=""></td>
                               <td>
                                 <a href="" onclick="return confirm('Yakin ubah status menjadi diterima?')" class="btn btn-social-icon btn-success">
                                   <i class="fa fa-check"></i></a>
@@ -62,16 +67,16 @@
                                   <i class="fa fa-ban"></i></a>
                               </td>
                             </tr>
-                            
+                            @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
                               <th>No.</th>
+                              <th>Name</th>
                               <th>Date</th>
-                              <th>Employee ID</th>
                               <th>Type</th>
                               <th>Reason</th>
-                              <th>Status</th>
+                              <th>Foto</th>
                               <th>Action</th>
                             </tr>
                             </tfoot>
