@@ -24,7 +24,8 @@ Route::post('/att/search','PresenceController@Searchattendance')->name('attendan
 Route::get('/att/detail/emp/{id}/{N}/{X}','PresenceController@DetailEMP')->name('attendance.detail');
 //activity
 Route::get('/act', 'PresenceController@activity')->name('activity.index');
-
+Route::post('/act/search','PresenceController@Searchactivity')->name('activitySearch.store');
+Route::get('/act/export/{first}/{end}', 'PresenceController@activityExport')->name('activity.export');
 //leaves
 Route::get('/leaves', 'LeavesController@leaves')->name('leaves.index');
 

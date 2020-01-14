@@ -24,10 +24,10 @@
           <th>Device Date In</th>
           <th>Device Time In</th>
           <th>Location In</th>
-          <th>Server Date In</th>
-          <th>Server Time In</th>
-          <th>Device Date In</th>
-          <th>Device Time In</th>
+          <th>Server Date Out</th>
+          <th>Server Time Out</th>
+          <th>Device Date Out</th>
+          <th>Device Time Out</th>
           <th>Location Out</th>
           <th>subject</th>
         </tr>

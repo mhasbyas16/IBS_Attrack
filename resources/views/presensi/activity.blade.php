@@ -26,6 +26,25 @@
                 </div>
               </div>
               <div class="card-body">
+                <form id="SearchActivity" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                <div class="row">
+                  <div class="col-sm-3 col-md-3">
+                    <input type="date" class="form-control float-right" name="min" id="min" value="{{$first}}">
+                      
+                  </div>
+                  <div class="col-sm-1 col-md-1">
+                   <b> <hr> </b>
+                  </div>
+                  <div class="col-sm-3 col-md-3">
+                       <input type="date" class="form-control float-right" name="max" id="max" value="{{$end}}">
+                  </div>
+                  <div class="col-sm-2 col-md-2">
+                    <button type="submit" class="btn btn-default" id="searchAct"><i class="fas fa-search"></i></button>
+                  </div>
+                </div>
+              </form>
+              <br>
                 <div class="row">
                   <div class="col-xs-12">
                       <!-- jQuery Knob -->
@@ -33,6 +52,8 @@
                         <!-- begin data alat-->
                       <form class="form-horizontal">
                         <div class="box-body">
+                          <a href="{{route('activity.export',['first'=>$first,'end'=>$end])}}" id="export" class="btn btn-primary">Export</a><br><br>
+
                           <table id="pegawais" class="table table-bordered table-striped text-center" style="width:100%;">
                             <thead>
                             <tr>
@@ -47,7 +68,7 @@
 
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="isiTB">
                             @php
                                 $no=0;
                             @endphp
@@ -68,88 +89,6 @@
                                   <i class="fa fa-info-circle"></i></a>
                               </td>
                             </tr>
-
-                            <!--MODAL-->
-                            <div class="modal fade" id="modal-lg-{{$no}}">
-                              <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h4 class="modal-title">Large Modal</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <div class="row">
-                                      <div class="col-md-4 col-sm-4">
-                                        <img src="{{$item->foto}}" style="width:150px;" height="" alt="foto">
-                                      </div>
-                                      <div class="col-md-8 col-sm-8">
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Nama</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->pegawai->nama}}</div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Date/Time In</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->device_date_in}}/{{$item->device_time_in}}</div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Location In</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7"><a href="https://www.google.com/maps/search/{{$item->loc_in}}" target="_blank">{{$item->loc_in}}</a></div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Date/Time Out</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->device_date_out}}/{{$item->device_time_out}}</div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Location Out</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7"><a href="https://www.google.com/maps/search/{{$item->loc_out}}" target="_blank">{{$item->loc_out}}</a></div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Customer Name</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->customerSite->customer->cust_name}}</div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Customer Site</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->customerSite->customer_site}}</div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Job Activity</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->jobActivity->jenis_kegiatan}}</div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Customer Address</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->customerSite->address}}</div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Deskripsi</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->deskripsi}}</div>
-                                        </div>
-                                      </div>                                    
-                                    </div>
-                                  </div>
-                                  <div class="modal-footer justify-content-between">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                  </div>
-                                </div>
-                                <!-- /.modal-content -->
-                              </div>
-                              <!-- /.modal-dialog -->
-                            </div>
-                            <!-- /.modal -->
                             @endforeach
                             </tbody>
                             <tfoot>

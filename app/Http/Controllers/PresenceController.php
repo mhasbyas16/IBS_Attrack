@@ -68,10 +68,44 @@ class PresenceController extends Controller
     }
 //ACTIVITY
     public function activity(){
-        $f=date('Y-m-01');
-        $e=date('Y-m-31');
-        $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$f,$e])->get();
-        return view('presensi.activity',['aktivitas'=>$aktivitas]);
+        $first=date('Y-m-01');
+        $end=date('Y-m-31');
+        $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$first,$end])->get();
+        return view('presensi.activity',[
+            'aktivitas'=>$aktivitas,
+            'first'=>$first,
+            'end'=>$end,]);
+    }
+    public function Searchactivity(Request $req){
+        $first=$req->min;
+        $end=$req->max;
+        $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$first,$end])->get();
+        
+       /* return view('presensi.attendance',[
+            'absensi'=>$absensi,
+            'first'=>$first,
+            'end'=>$end,
+        ]);*/
+        return response()->json($aktivitas);
+    }
+
+    public function activityExport($first,$end){
+        $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$first,$end])->get();
+        //$sumAbsensi=Absensi::with('pegawai')->select(DB::raw('count(*)as total'),'absensis.*')->whereBetween('server_date_in',[$first,$end])->get();
+        $pegawai=Pegawai::get(['id','nama']);
+        $hadir=[];
+        foreach ($pegawai as $val) {
+            $hadirAktivitas=Aktivitas::with('pegawai')->where('pegawai_id',$val->id)->whereBetween('device_date_in',[$first,$end])->count();
+            $hadir[$val->id]=$hadirAktivitas;
+        }
+       
+        return view('presensi.export.exportAct',[
+            'aktivitas'=>$aktivitas,
+            'first'=>$first,
+            'end'=>$end,
+            'hadir'=>$hadir,
+            'pegawai'=>$pegawai
+        ]);
     }
 
 //LEAVES
