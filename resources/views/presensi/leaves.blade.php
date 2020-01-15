@@ -26,6 +26,24 @@
                 </div>
               </div>
               <div class="card-body">
+                <form id="SearchLeaves" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                <div class="row">
+                  <div class="col-sm-3 col-md-3">
+                    <input type="date" class="form-control float-right" name="min" id="min" value="{{$first}}">
+                      
+                  </div>
+                  <div class="col-sm-1 col-md-1">
+                   <b> <hr> </b>
+                  </div>
+                  <div class="col-sm-3 col-md-3">
+                       <input type="date" class="form-control float-right" name="max" id="max" value="{{$end}}">
+                  </div>
+                  <div class="col-sm-2 col-md-2">
+                    <button type="submit" class="btn btn-default" id="searchLeaves"><i class="fas fa-search"></i></button>
+                  </div>
+                </div>
+              </form><br><br>
                 <div class="row">
                   <div class="col-xs-12">
                       <!-- jQuery Knob -->
@@ -33,7 +51,7 @@
                         <!-- begin data alat-->
                       <form class="form-horizontal">
                         <div class="box-body">
-                          <table id="pegawais" class="table table-bordered table-striped text-center">
+                          <table id="pegawais" style='width:100%;' class="table table-bordered table-striped text-center">
                             <thead>
                             <tr>
                               <th>No.</th>
@@ -42,10 +60,9 @@
                               <th>Type</th>
                               <th>Reason</th>
                               <th>Foto</th>
-                              <th>Action</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="isiTB">
                             @php
                                 $no=0;
                             @endphp
@@ -53,19 +70,19 @@
                               @php
                                   $no++;
                               @endphp
-                            <tr>
-                              <td>{{$no}}.</td>
-                              <td>{{$item->pegawai->nama}}</td>
-                              <td>{{$item->date}}</td>
-                              <td>{{$item->leaveType->type}}</td>
-                              <td>{{$item->reason}}</td>
-                              <td><img src="{{$item->foto}}" style="height:100px;" alt=""></td>
-                              <td>
-                                <a href="" onclick="return confirm('Yakin ubah status menjadi diterima?')" class="btn btn-social-icon btn-success">
-                                  <i class="fa fa-check"></i></a>
-                                <a href="" onclick="return confirm('Yakin ubah status menjadi ditolak?')" class="btn btn-social-icon btn-danger">
-                                  <i class="fa fa-ban"></i></a>
-                              </td>
+                            <tr id="{{$no}}">
+                              <td style="width:2%;">{{$no}}.</td>
+                              <td style="width:20%;">{{$item->pegawai->nama}}</td>
+                              <td style="width:20%;">{{$item->date}}</td>
+                              <td style="width:15%;">{{$item->leaveType->type}}</td>
+                              <td style="width:20%;">{{$item->reason}}</td>
+                              <td style="width:23%;"><img src="{{$item->foto}}" style="height:100px;" alt=""></td>
+                              <!--<td style='width:20%;'>
+                                <a href="" id="yesValidate" data-id="" onclick="return confirm('Yakin ubah status menjadi diterima?')" class="btn btn-social-icon btn-success">
+                                  <i class="fa fa-check"></i></a>&nbsp;&nbsp;
+                                <a href="" id="noValidate" data-id="" onclick="return confirm('Yakin ubah status menjadi ditolak?')" class="btn btn-social-icon btn-danger">
+                                  <i class="fa fa-times"></i></a>
+                              </td>-->
                             </tr>
                             @endforeach
                             </tbody>
@@ -77,7 +94,6 @@
                               <th>Type</th>
                               <th>Reason</th>
                               <th>Foto</th>
-                              <th>Action</th>
                             </tr>
                             </tfoot>
                           </table>

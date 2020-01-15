@@ -26,8 +26,10 @@ Route::get('/att/detail/emp/{id}/{N}/{X}','PresenceController@DetailEMP')->name(
 Route::get('/act', 'PresenceController@activity')->name('activity.index');
 Route::post('/act/search','PresenceController@Searchactivity')->name('activitySearch.store');
 Route::get('/act/export/{first}/{end}', 'PresenceController@activityExport')->name('activity.export');
+Route::get('/act/detail/emp/{id}/{N}/{X}','PresenceController@DetailEMPAct')->name('activity.detail');
 //leaves
 Route::get('/leaves', 'LeavesController@leaves')->name('leaves.index');
+Route::post('/leaves/search','LeavesController@Searchleaves')->name('leavesSearch.store');
 
 //Departement
 //deptgrup
@@ -56,8 +58,12 @@ Route::post('/customer_site/store','CustomerController@CustomerSiteStore')->name
 Route::get('/customer_site/destroy/{id}','CustomerController@CustomerSiteDestroy')->name('customerSite.destroy');
 
 //Employee
-Route::get('/employee', 'Controller@employee')->name('employee.index');
-Route::get('/employee_add', 'Controller@employeeAdd')->name('employeeAdd.index');
+Route::get('/employee', 'EmployeeController@employee')->name('employee.index');
+Route::get('/employee/destroy/{id}', 'EmployeeController@employeeDestroy')->name('employee.destroy');
+Route::get('/employee/edit/{id}', 'EmployeeController@employeeEdit')->name('employee.show');
+Route::get('/employee/resetpass/{id}', 'EmployeeController@employeeReset')->name('employee.reset');
+Route::post('/employe/store/{type}','EmployeeController@employeeStore')->name('employee.store');
+Route::get('/employee_add', 'EmployeeController@employeeAdd')->name('employeeAdd.index');
 
 //setting
 Route::get('/setting', 'Controller@setting')->name('setting.index');

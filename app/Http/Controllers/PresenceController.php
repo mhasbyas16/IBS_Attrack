@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Absensi;
 use App\Aktivitas;
+use App\Leave;
 use App\Pegawai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -46,24 +47,30 @@ class PresenceController extends Controller
     }
     public function attendanceExport($first,$end){
         $absensi=Absensi::with('pegawai')->whereBetween('server_date_in',[$first,$end])->get();
-        //$sumAbsensi=Absensi::with('pegawai')->select(DB::raw('count(*)as total'),'absensis.*')->whereBetween('server_date_in',[$first,$end])->get();
+        $leave=Leave::with('pegawai','leaveType')->whereBetween('date',[$first,$end])->get();
+
         $pegawai=Pegawai::get(['id','nama']);
         $hadir=[];
         $telat=[];
+        $izin=[];
         foreach ($pegawai as $val) {
             $hadirAbsensi=Absensi::with('pegawai')->where('pegawai_id',$val->id)->where('status','hadir')->whereBetween('server_date_in',[$first,$end])->count();
             $telatAbsensi=Absensi::with('pegawai')->where('pegawai_id',$val->id)->where('status','telat')->whereBetween('server_date_in',[$first,$end])->count();
+            $izinRecord=Leave::with('pegawai')->where('pegawai_id',$val->id)->whereBetween('date',[$first,$end])->count();
             $hadir[$val->id]=$hadirAbsensi;
             $telat[$val->id]=$telatAbsensi;
+            $izin[$val->id]=$izinRecord;
         }
        
         return view('presensi.export.exportAtt',[
             'absensi'=>$absensi,
             'first'=>$first,
+            'izin'=>$izin,
             'end'=>$end,
             'hadir'=>$hadir,
             'pegawai'=>$pegawai,
-            'telat'=>$telat
+            'telat'=>$telat,
+            'leave'=>$leave
         ]);
     }
 //ACTIVITY
@@ -75,6 +82,17 @@ class PresenceController extends Controller
             'aktivitas'=>$aktivitas,
             'first'=>$first,
             'end'=>$end,]);
+    }
+    public function DetailEMPAct($id,$N,$X){
+        $first=$N;
+        $end=$X;
+        $item=Aktivitas::with('pegawai')->whereBetween('device_date_in',[$first,$end])->where('id',$id)->first();
+        
+        return view('presensi.activity_detail',[
+            'item'=>$item,
+            'first'=>$first,
+            'end'=>$end,
+        ]);
     }
     public function Searchactivity(Request $req){
         $first=$req->min;
@@ -107,6 +125,4 @@ class PresenceController extends Controller
             'pegawai'=>$pegawai
         ]);
     }
-
-//LEAVES
 }

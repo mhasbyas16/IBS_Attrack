@@ -85,7 +85,7 @@
                               <td><a href="https://www.google.com/maps/search/{{$item->loc_out}}" target="_blank">{{$item->loc_out}}</a></td>
                               <td>{{$item->customerSite->customer->cust_name}}</td>
                               <td style="width:50px;">
-                                <a href="#Info" class="btn btn-social-icon btn-info" data-toggle="modal" data-target="#modal-lg-{{$no}}">
+                                <a href="{{route('activity.detail',['id'=>$item->id,'N'=>$first,'X'=>$end])}}" class="btn btn-social-icon btn-info">
                                   <i class="fa fa-info-circle"></i></a>
                               </td>
                             </tr>

@@ -38,7 +38,6 @@
             });
             }
         });
-    
     //DEPT
     //DELETE
       $("body").on("click","#DeptDel",function(e){
@@ -305,9 +304,8 @@ $("body").on("click","#searchAct", function(e){
 
         $.each(TB, function(key,value){
           ++NO;
-          //var URL = "{{url('/att/detail/emp')}}/"+value.id+"/"+N+"/"+X;
-          var URL = "javascript:void(0)";
-
+          var URL = "{{url('/act/detail/emp')}}/"+value.id+"/"+N+"/"+X;
+          
           $("#isiTB").append(
                 
           "<tr>"
@@ -332,5 +330,79 @@ $("body").on("click","#searchAct", function(e){
       }
     });
   });
+
+//LEAVES SEARCH DATE
+$("body").on("click","#searchLeaves", function(e){
+    e.preventDefault();
+    var N = $("#min").val();
+    var X = $("#max").val();
+    $.ajax({
+      method : "POST",
+      url : "{{url('/leaves/search')}}",
+      data : {
+        min : N,
+        max : X,
+      },
+      success : function(TB){
+        console.log(TB);
+        //$("#export").attr("href", "{{url('/act/export')}}/"+N+"/"+X);
+        $("#isiTB").empty();
+
+        var NO=0;
+
+        $.each(TB, function(key,value){
+          ++NO;
+              
+          $("#isiTB").append(
+                
+          "<tr id='"+NO+"'>"
+              +"<td style='width:2%;'>"+NO+".</td>"
+              +"<td style='width:20%;'>"+value.pegawai.nama+"</td>"
+              +"<td style='width:20%;'>"+value.date+"</td>"
+              +"<td style='width:15%;'>"+value.leave_type.type+"</td>"
+              +"<td style='width:20%;'>"+value.reason+"</td>"
+              +"<td style='width:23%;'><img src='"+value.foto+"' style='height:100px;' alt=''></td>"
+          +"</tr>"
+       );  
+        });
+              
+      }
+    });
+  });
+
+//LIST EMPLOYEE
+  //DELETE
+  $("body").on("click","#deleteEMP",function(e){
+            e.preventDefault();
+            var id=$(this).data("id");
+            if (confirm('apakah anda akan menghapus data ini?')) {
+            
+            $.ajax({
+                method: "GET",
+                url: "{{url('/employee/destroy')}}/"+id,
+                success: function(del){
+                    $("#listemp_"+id).remove();
+    
+                    $(function(){
+                      const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      showConfirmButton: false,
+                      timer: 3000
+                      });
+    
+                      Toast.fire({
+                      type: 'success',
+                      title: 'Sukses Menghapus Data'
+                      });
+                    });
+                },
+                error: function (del) {
+                    console.log("Error:",del);
+                }
+            });
+            }
+        });
+        
     });
 </script>

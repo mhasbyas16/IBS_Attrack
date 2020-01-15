@@ -37,53 +37,55 @@
                             <thead>
                             <tr>
                               <th>No.</th>
-                              <th>Employee ID</th>
+                              <th>NIP</th>
                               <th>Name</th>
-                              <th>Date Birth</th>
-                              <th>Place Birth</th>
+                              <th>Email</th>
                               <th>Gender</th>
-                              <th>Religion</th>
                               <th>Address</th>
                               <th>Department</th>
-                              <th>Grade</th>
                               <th>Action</th>
-
                             </tr>
                             </thead>
                             <tbody>
-                            
-                            <tr>
-                              <td>1</td>
-                              <td>67890</td>
-                              <td>Nana</td>
-                              <td>5/8/1996</td>
-                              <td>Jakarta</td>
-                              <td>Female</td>
-                              <td>Islam</td>
-                              <td>Jalan jalan</td>
-                              <td>Technical</td>
-                              <td>Action</td>
+                            @php
+                                $no=0;
+                            @endphp
+                            @foreach ($pegawai as $item)
+                            @php
+                                $no++;
+                            @endphp                          
+                            <tr id="listemp_{{$item->id}}">
+                              <td>{{$no}}.</td>
+                              <td>{{$item->nip}}</td>
+                              <td>{{$item->nama}}</td>
+                              <td>{{$item->email}}</td>
                               <td>
-                                <a href="" class="btn btn-social-icon btn-success">
-                                  <i class="fa fa-edit"></i></a>
-                                <a href="" class="btn btn-social-icon btn-danger">
+                                @if ($item->gender=="lk")
+                                    Laki-Laki
+                                @elseif ($item->gender=="pr")
+                                    Perempuan
+                                @endif
+                              </td>
+                              <td>{{$item->address}}</td>
+                              <td>{{$item->jabatan->nama}}</td>
+                              <td style="width:20%;">
+                                <a href="{{route('employee.show',['id'=>Crypt::encrypt($item->id)])}}" class="btn btn-social-icon btn-success">
+                                  <i class="fa fa-edit"></i></a>&nbsp;
+                                <a href="javascript:void(0)" id="deleteEMP" data-id="{{$item->id}}" class="btn btn-social-icon btn-danger">
                                   <i class="fa fa-trash"></i></a>
                               </td>
                             </tr>
-                            
+                            @endforeach                            
                             </tbody>
                             <tfoot>
                             <tr>
                               <th>No.</th>
-                              <th>Employee ID</th>
+                              <th>NIP</th>
                               <th>Name</th>
-                              <th>Date Birth</th>
-                              <th>Place Birth</th>
+                              <th>Email</th>
                               <th>Gender</th>
-                              <th>Religion</th>
                               <th>Address</th>
                               <th>Department</th>
-                              <th>Grade</th>
                               <th>Action</th>
                             </tr>
                             </tfoot>

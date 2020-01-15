@@ -50,50 +50,57 @@
                             @endphp
                             
                             <!--MODAL-->
-                                        <div class="row">
-                                          <div class="col-xs-4 col-md-4 col-sm-4">Nama</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->pegawai->nama}}</div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-4 col-md-4 col-sm-4">Server Date/Time In</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->server_date_in}}/{{$item->server_time_in}}</div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Device Date/Time In</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->device_date_in}}/{{$item->device_time_in}} 
-                                            @if ($M>=5 AND $jam>0)
-                                            <span class="right badge badge-danger">+{{$jam}}h{{$M}}m</span>&nbsp;
-                                            @endif
-                                          </div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Location In</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7"><a href="https://www.google.com/maps/search/{{$item->loc_in}}" target="_blank">{{$item->loc_in}}</a></div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Server Date/Time Out</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->server_date_out}}/{{$item->server_time_out}}</div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Device Date/Time Out</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7">{{$item->device_date_out}}/{{$item->device_time_out}}
-                                            @if ($M2>=5 AND $jam2>0)
-                                            <span class="right badge badge-danger">+{{$jam2}}h{{$M2}}m</span>&nbsp;
-                                            @endif
-                                          </div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 col-sm-4">Location Out</div>
-                                          <div class="col-md-1 col-sm-1">:</div>
-                                          <div class="col-md-7 col-sm-7"><a href="https://www.google.com/maps/search/{{$item->loc_out}}" target="_blank">{{$item->loc_out}}</a></div>
-                                        </div>
-                                        <hr>
+                            <table>
+                              <tr>
+                                <td>Nama</td> 
+                                <td>:</td>
+                                <td>{{$item->pegawai->nama}}</td>
+                              </tr>
+                              <tr>
+                                <td>Server Date/Time In</td>
+                                <td>:</td>
+                                <td>{{$item->server_date_in}}/{{$item->server_time_in}}</td>
+                              </tr>
+                              <tr>
+                                <td>Device Date/Time In</td>
+                                <td>:</td>
+                                <td>{{$item->device_date_in}}/{{$item->device_time_in}} 
+                                    @if ($M>=5 AND $jam>0)
+                                      <span class="right badge badge-danger">+{{$jam}}h{{$M}}m</span>&nbsp;
+                                    @endif
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Location In</td>
+                                <td>:</td>
+                                <td><a href="https://www.google.com/maps/search/{{$item->loc_in}}" target="_blank">{{$item->loc_in}}</a></td>
+                              </tr>
+                              <tr>
+                                <td>Server Date/Time Out</td>
+                                <td>:</td>
+                                <td>{{$item->server_date_out}}/{{$item->server_time_out}}</td>
+                              </tr>
+                              <tr>
+                                <td>Device Date/Time Out</td>
+                                <td>:</td>
+                                <td>{{$item->device_date_out}}/{{$item->device_time_out}}
+                                  @if ($M2>=5 AND $jam2>0)
+                                    <span class="right badge badge-danger">+{{$jam2}}h{{$M2}}m</span>&nbsp;
+                                  @endif
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Location Out</td>
+                                <td>:</td>
+                                <td><a href="https://www.google.com/maps/search/{{$item->loc_out}}" target="_blank">{{$item->loc_out}}</a></td>
+                              </tr>
+                              <tr>
+                                <td colspan="3">
+                                  <a href="{{route('attendance.index')}}" class="btn btn-success">Back</a><br><br>
+                                </td>
+                              </tr>
+                            </table>
+                          <hr>
                         <!-- /.box-body -->
                     </div>
                       <!-- /.box -->

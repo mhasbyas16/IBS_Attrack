@@ -12,6 +12,16 @@ class LeavesController extends Controller
         $end=date('Y-m-31');
         $isi=Leave::with('pegawai','leaveType')->whereBetween('date',[$first,$end]);
         $leave=$isi->get();
-        return view('presensi.leaves',['leave'=>$leave]);
+        return view('presensi.leaves',[
+            'leave'=>$leave,
+            'first'=>$first,
+            'end'=>$end]);
+    }
+    public function Searchleaves(Request $req){
+        $first=$req->min;
+        $end=$req->max;
+        $leave=Leave::with('pegawai','leaveType')->whereBetween('date',[$first,$end])->get();
+        
+        return response()->json($leave);
     }
 }

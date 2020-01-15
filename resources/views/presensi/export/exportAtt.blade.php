@@ -14,7 +14,7 @@
     <table>
         <thead>
             <tr>
-                <th colspan="13">Kehadiran Karyawan {{$first}}-{{$end}}</th>    
+                <th colspan="13"><b>Kehadiran Karyawan {{$first}}-{{$end}}</b></th>    
             </tr>
         <tr>
           <th>No.</th>
@@ -83,17 +83,52 @@
       @endforeach
         </tbody>
       </table>
+
       <br><br><br>
       <table>
         <thead>
             <tr>
-                <th colspan="13">Kehadiran Karyawan {{$first}}-{{$end}}</th>    
+                <th colspan="13"><b>Izin Karyawan {{$first}}-{{$end}}</b></th>    
             </tr>
         <tr>
           <th>No.</th>
           <th>Name</th>
-          <th>Kehadiran</th>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Reason</th>
+        </tr>
+        </thead>
+        <tbody>
+          @php
+              $no=0;
+          @endphp
+        @foreach ($leave as $leaveVAL)
+        @php
+         $no++;   
+        @endphp
+        <tr>
+            <td>{{$no}}.</td>
+            <td>{{$leaveVAL->pegawai->nama}}</td>
+            <td>{{$leaveVAL->date}}</td>
+            <td>{{$leaveVAL->leaveType->type}}</td>
+            <td>{{$leaveVAL->reason}}</td>
+        </tr>
+        @endforeach
+        </tbody>
+      </table>
+
+      <br><br><br>
+      <table>
+        <thead>
+            <tr>
+                <th colspan="13"><b>Total Kehadiran Karyawan {{$first}}-{{$end}}</b></th>    
+            </tr>
+        <tr>
+          <th>No.</th>
+          <th>Name</th>
+          <th>hadir</th>
           <th>Telat</th>
+          <th>Izin</th>
           <th>Total kehadiran</th>
         </tr>
         </thead>
@@ -110,7 +145,8 @@
             <td>{{$m->nama}}</td>
             <td>{{$hadir["$m->id"]}}</td>
             <td>{{$telat["$m->id"]}}</td>
-            <td>{{$hadir["$m->id"]+$telat["$m->id"]}}</td>
+            <td>{{$izin["$m->id"]}}</td>
+            <td>{{$hadir["$m->id"]+$telat["$m->id"]+$izin["$m->id"]}}</td>
         </tr>
         @endforeach
         </tbody>

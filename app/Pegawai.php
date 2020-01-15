@@ -29,4 +29,7 @@ class Pegawai extends Model
     public function logPegawais(){
         return $this->hasMany('App\LogPegawai');
     }
+    public function jabatan(){
+        return $this->belongsTo('App\Jabatan');
+    }
 }

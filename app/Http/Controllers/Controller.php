@@ -25,9 +25,7 @@ class Controller extends BaseController
 
     
 
-    public function employee(){
-        return view('pegawai.listemployee');
-    }
+    
 
     public function employeeAdd(){
         return view('pegawai.addemployee');
