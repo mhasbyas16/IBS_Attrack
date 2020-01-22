@@ -1,5 +1,9 @@
-@if (!Session::has('id'))
-<script>window.location = "{{route('logout.destroy')}}";</script>
+@if (Session::has('id'))
+  @if (Session::get('dept')==100)
+    <script>window.location = "{{route('home.index')}}";</script>
+  @endif  
+@elseif(!Session::has('id'))
+  <script>window.location = "{{route('logout.destroy')}}";</script>
 @endif
 <!DOCTYPE html>
 <html lang="en">
@@ -89,6 +93,13 @@
 <script src="{{URL::asset('dist/js/pages/dashboard2.js')}}"></script>
 <!-- custom js-->
 <script src="{{URL::asset('js/system.js')}}"></script>
+<script>
+$(document).ready(function(){
+  $("#Att").DataTable();
+  $("#Act").DataTable();
+  $("#Leave").DataTable();
+});
+</script>
 <!-- AJAX -->
 @include("template.ajax")
 </body>

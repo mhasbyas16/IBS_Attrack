@@ -1,4 +1,16 @@
 <script>
+
+$(document).ready(function(){
+    $("#password2").keyup(function(){
+      var pass1=$("#password").val();
+      var pass2=$(this).val();
+      if (pass1 != pass2) {   
+        $(this).css("background-color", "#ff4d4d"); 
+      }else{
+        $(this).css("background-color","");
+      }
+    });
+});
     $(document).ready(function(){
         $.ajaxSetup({
             headers: {

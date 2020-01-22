@@ -93,8 +93,7 @@
                                   <i class="fa fa-info-circle"></i></a>
                               </td>
                             </tr>
-                          @endforeach
-                            
+                          @endforeach                            
                             </tbody>
                             <tfoot>
                             <tr>

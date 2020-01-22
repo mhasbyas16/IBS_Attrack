@@ -1,7 +1,7 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2019 <a href="#">Infinite Business Synergy</a>.</strong>
+    <strong>Copyright &copy; <?php echo '2019';?>-<?php echo date('Y');?> <a href="#">Infinite Business Synergy</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.1
+      <b>Version</b> 1.0
     </div>
   </footer>

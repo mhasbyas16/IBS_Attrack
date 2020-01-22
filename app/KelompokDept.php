@@ -10,6 +10,11 @@ class KelompokDept extends Model
         'nama'
     ];
 
+    protected $hidden=[
+        'created_at',
+        'updated_at'
+    ];
+
     public function jabatans(){
         return $this->hasMany('App\Jabatan');
     }

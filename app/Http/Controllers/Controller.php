@@ -2,17 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Absensi;
+use App\Aktivitas;
+use App\Leave;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Session;
 
 class Controller extends BaseController
 {
     
     
     public function dash(){
-        return view('dashboard.dash');
+        $sessionDept=Session::get('dept');  
+        $first=date('Y-m-d');
+        $end=date('Y-m-d');
+        if($sessionDept=='0'){
+            $absensi=Absensi::with('pegawai')->whereBetween('server_date_in',[$first,$end])->get();
+            $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$first,$end])->get();
+
+            $isi=Leave::with('pegawai','leaveType')->whereBetween('date',[$first,$end]);
+            $leave=$isi->get();
+        }else{
+            $absensi=Absensi::with('pegawai')
+            ->join('pegawais','pegawais.id','=','absensis.pegawai_id')
+            ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
+            ->where('jabatans.kelompok_dept_id',$sessionDept)
+            ->whereBetween('server_date_in',[$first,$end])->get();
+
+            $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')
+            ->join('pegawais','pegawais.id','=','aktivitas.pegawai_id')
+            ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
+            ->where('jabatans.kelompok_dept_id',$sessionDept)
+            ->whereBetween('device_date_in',[$first,$end])->get();
+
+            $isi=Leave::with('pegawai','leaveType')->whereBetween('date',[$first,$end]);
+            $leave=$isi->get();
+        }
+
+        return view('dashboard.dash',[
+            'absensi'=>$absensi,
+            'aktivitas'=>$aktivitas,
+            'leave'=>$leave,
+            'first'=>$first,
+            'end'=>$end,
+        ]);
     }
 
     public function act(){

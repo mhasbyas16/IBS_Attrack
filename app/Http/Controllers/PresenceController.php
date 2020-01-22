@@ -8,14 +8,24 @@ use App\Leave;
 use App\Pegawai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class PresenceController extends Controller
 {
 //ATTENDANCE
     public function attendance(){
+        $sessionDept=Session::get('dept');  
         $first=date('Y-m-01');
         $end=date('Y-m-31');
-        $absensi=Absensi::with('pegawai')->whereBetween('server_date_in',[$first,$end])->get();
+        if($sessionDept=='0'){
+            $absensi=Absensi::with('pegawai')->whereBetween('server_date_in',[$first,$end])->get();
+        }else{
+            $absensi=Absensi::with('pegawai')
+            ->join('pegawais','pegawais.id','=','absensis.pegawai_id')
+            ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
+            ->where('jabatans.kelompok_dept_id',$sessionDept)
+            ->whereBetween('server_date_in',[$first,$end])->get();
+        }
         return view('presensi.attendance',[
             'absensi'=>$absensi,
             'first'=>$first,
@@ -23,15 +33,18 @@ class PresenceController extends Controller
         ]);
     }
     public function Searchattendance(Request $req){
+        $sessionDept=Session::get('dept');
         $first=$req->min;
         $end=$req->max;
-        $absensi=Absensi::with('pegawai')->whereBetween('server_date_in',[$first,$end])->get();
-        
-       /* return view('presensi.attendance',[
-            'absensi'=>$absensi,
-            'first'=>$first,
-            'end'=>$end,
-        ]);*/
+        if($sessionDept=='0'){
+            $absensi=Absensi::with('pegawai')->whereBetween('server_date_in',[$first,$end])->get();
+        }else{
+            $absensi=Absensi::with('pegawai')
+            ->join('pegawais','pegawais.id','=','absensis.pegawai_id')
+            ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
+            ->where('jabatans.kelompok_dept_id',$sessionDept)
+            ->whereBetween('server_date_in',[$first,$end])->get();
+        }
         return response()->json($absensi);
     }
     public function DetailEMP($id,$N,$X){
@@ -46,17 +59,61 @@ class PresenceController extends Controller
         ]);
     }
     public function attendanceExport($first,$end){
-        $absensi=Absensi::with('pegawai')->whereBetween('server_date_in',[$first,$end])->get();
-        $leave=Leave::with('pegawai','leaveType')->whereBetween('date',[$first,$end])->get();
+        $sessionDept=Session::get('dept');
+        if($sessionDept=='0'){
+            $absensi=Absensi::with('pegawai')->whereBetween('server_date_in',[$first,$end])->get();
+            $leave=Leave::with('pegawai','leaveType')->whereBetween('date',[$first,$end])->get();
+        }else{
+            $absensi=Absensi::with('pegawai')
+            ->join('pegawais','pegawais.id','=','absensis.pegawai_id')
+            ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
+            ->where('jabatans.kelompok_dept_id',$sessionDept)
+            ->whereBetween('server_date_in',[$first,$end])->get();
 
-        $pegawai=Pegawai::get(['id','nama']);
+            $leave=Leave::with('pegawai','leaveType')
+            ->join('pegawais','pegawais.id','=','leaves.pegawai_id')
+            ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
+            ->where('jabatans.kelompok_dept_id',$sessionDept)
+            ->whereBetween('date',[$first,$end])->get();
+        }
+        
+
+        if($sessionDept=='0'){
+            $pegawai=Pegawai::get(['id','nama']);
+        }else{
+            $pegawai=Pegawai::join('jabatans','jabatans.id','=','pegawais.jabatan_id')->where('jabatans.kelompok_dept_id',$sessionDept)->get(['pegawais.id','pegawais.nama']);
+        }
         $hadir=[];
         $telat=[];
         $izin=[];
         foreach ($pegawai as $val) {
-            $hadirAbsensi=Absensi::with('pegawai')->where('pegawai_id',$val->id)->where('status','hadir')->whereBetween('server_date_in',[$first,$end])->count();
-            $telatAbsensi=Absensi::with('pegawai')->where('pegawai_id',$val->id)->where('status','telat')->whereBetween('server_date_in',[$first,$end])->count();
-            $izinRecord=Leave::with('pegawai')->where('pegawai_id',$val->id)->whereBetween('date',[$first,$end])->count();
+            if($sessionDept=='0'){
+                $hadirAbsensi=Absensi::with('pegawai')->where('pegawai_id',$val->id)->where('status','hadir')->whereBetween('server_date_in',[$first,$end])->count();
+                $telatAbsensi=Absensi::with('pegawai')->where('pegawai_id',$val->id)->where('status','telat')->whereBetween('server_date_in',[$first,$end])->count();
+                $izinRecord=Leave::with('pegawai')->where('pegawai_id',$val->id)->whereBetween('date',[$first,$end])->count();
+            }else{
+                $hadirAbsensi=Absensi::with('pegawai')
+                ->join('pegawais','pegawais.id','=','absensis.pegawai_id')
+                ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
+                ->where('jabatans.kelompok_dept_id',$sessionDept)
+                ->where('pegawai_id',$val->id)    
+                ->where('status','hadir')
+                ->whereBetween('server_date_in',[$first,$end])->count();
+                
+                $telatAbsensi=Absensi::with('pegawai')
+                ->join('pegawais','pegawais.id','=','absensis.pegawai_id')
+                ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
+                ->where('jabatans.kelompok_dept_id',$sessionDept)
+                ->where('pegawai_id',$val->id)    
+                ->where('status','telat')
+                ->whereBetween('server_date_in',[$first,$end])->count();
+
+                $izinRecord=Leave::with('pegawai')
+                ->join('pegawais','pegawais.id','=','leaves.pegawai_id')
+                ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
+                ->where('jabatans.kelompok_dept_id',$sessionDept)
+                ->where('pegawai_id',$val->id)->whereBetween('date',[$first,$end])->count();
+            }
             $hadir[$val->id]=$hadirAbsensi;
             $telat[$val->id]=$telatAbsensi;
             $izin[$val->id]=$izinRecord;
@@ -75,9 +132,18 @@ class PresenceController extends Controller
     }
 //ACTIVITY
     public function activity(){
+        $sessionDept=Session::get('dept');
         $first=date('Y-m-01');
         $end=date('Y-m-31');
-        $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$first,$end])->get();
+        if($sessionDept=='0'){
+            $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$first,$end])->get();
+        }else{
+            $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')
+            ->join('pegawais','pegawais.id','=','aktivitas.pegawai_id')
+            ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
+            ->where('jabatans.kelompok_dept_id',$sessionDept)
+            ->whereBetween('device_date_in',[$first,$end])->get();
+        }
         return view('presensi.activity',[
             'aktivitas'=>$aktivitas,
             'first'=>$first,
@@ -99,11 +165,6 @@ class PresenceController extends Controller
         $end=$req->max;
         $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$first,$end])->get();
         
-       /* return view('presensi.attendance',[
-            'absensi'=>$absensi,
-            'first'=>$first,
-            'end'=>$end,
-        ]);*/
         return response()->json($aktivitas);
     }
 

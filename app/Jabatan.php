@@ -6,11 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jabatan extends Model
 {
-    protected $fillable=[
-        'kelompok_dept_id',
+    protected $fillable=[ 
         'nama'
     ];
 
+    protected $hidden=[
+        'kelompok_dept_id',
+        'created_at',
+        'updated_at'
+    ];
     public function kelompokDept(){
         return $this->belongsTo('App\KelompokDept');
     }

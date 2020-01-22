@@ -7,10 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Pegawai extends Model
 {
     protected $fillable=[
+        'id',
         'nip',
-        'password',
-        'jabatan_id',
-        'imei',
         'nama',
         'gender',
         'email',
@@ -32,4 +30,12 @@ class Pegawai extends Model
     public function jabatan(){
         return $this->belongsTo('App\Jabatan');
     }
+
+    protected $hidden=[
+        'imei',
+        'password',
+        'jabatan_id',
+        'created_at',
+        'updated_at'
+    ];
 }

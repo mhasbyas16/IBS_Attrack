@@ -35,3 +35,6 @@ $("#Cancelcust").click(function(){
     $("#Phone").val("");
     $("#Address").val("");
 });
+
+//PASSWORD CHECK
+

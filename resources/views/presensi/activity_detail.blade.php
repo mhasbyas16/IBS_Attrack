@@ -86,7 +86,7 @@
                             </tr>
                             <tr>
                               <td colspan="3">
-                                <a href="{{route('activity.index')}}" class="btn btn-success">Back</a><br><br>
+                                <a href="javascript:void(0)" onclick="goBack()" class="btn btn-success">Back</a><br><br>
                               </td>
                             </tr>
                           </table>
@@ -132,6 +132,10 @@
 <script src="../plugins/filterizr/jquery.filterizr.min.js"></script>
 <!-- Page specific script -->
 <script>
+  function goBack() {
+    window.history.back();
+  }
+
   $(function () {
     $(document).on('click', '[data-toggle="lightbox"]', function(event) {
       event.preventDefault();

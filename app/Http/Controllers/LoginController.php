@@ -24,7 +24,7 @@ class LoginController extends Controller
         if ($count>=1) {
             $user=$sql->first();
             if (Hash::check($pass, $user->password) ) {
-                if ($user->kelompok_dept_id=='0') {
+                if ($user->kelompok_dept_id=='0' OR $user->kelompok_dept_id=='100') {
                     Session::put('dept','superadmin');
                     
                 }else{

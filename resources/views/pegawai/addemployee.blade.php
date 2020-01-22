@@ -104,7 +104,8 @@
                         </div>
                       </form>
                       @elseif (Route::is("employeeAdd.index"))
-                          <form class="form-horizontal" action="" method="">
+                          <form class="form-horizontal" action="{{route('employee.store',['type'=>'add'])}}" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div class="box-body">
 
                               <div class="row col-md-12">
@@ -163,7 +164,7 @@
                               <div class="row col-md-12 mt-2">
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Confirm Password</label>
                                 <div class="col-sm-5">
-                                  <input type="password" class="form-control" name="confirm_password" id="password" required="">
+                                  <input type="password" class="form-control" name="confirm_password" id="password2" required="">
                                 </div>
                               </div>
                             </div>

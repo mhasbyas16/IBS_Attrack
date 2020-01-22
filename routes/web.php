@@ -10,6 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/home',function(){
+    return view('employeeAtt');
+})->name('home.index');
+Route::get('/time','EmployeeController@time');
+Route::get('/cek/{nip}','EmployeeController@cek');
+Route::post('/inout','EmployeeController@inout')->name('inout.store');
 //login / Logout
 Route::get('/', 'LoginController@login')->name('login.index');
 Route::post('/login', 'LoginController@validate')->name('login.store');
