@@ -58,6 +58,7 @@ class EmployeeController extends Controller
         $jk=$req->jk;
         $jabatan=$req->jabatan;
         $alamat=$req->alamat;
+        $status=$req->status;
         if ($type=="edit") {
             $id=$req->id;
 
@@ -67,7 +68,8 @@ class EmployeeController extends Controller
                 'nama'=>$nama,
                 'email'=>$email,
                 'gender'=>$jk,
-                'address'=>$alamat
+                'address'=>$alamat,
+                'status'=>$status
             ];
 
             $edit=Pegawai::where('id',$id)->update($save);
@@ -86,6 +88,7 @@ class EmployeeController extends Controller
                     'email'=>$email,
                     'gender'=>$jk,
                     'address'=>$alamat,
+                    'status'=>$status,
                     'password'=>$password,
                     'imei'=>'0'
                 ];

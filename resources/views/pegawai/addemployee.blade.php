@@ -90,6 +90,21 @@
                               <textarea class="form-control" name="alamat" required>{{$pegawai->address}}</textarea>
                             </div>
                           </div>
+                          <div class="row col-md-12 mt-2">
+                            <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Status</label>
+                            <div class="col-sm-5">
+                                <select name="status" value="" class="form-control" required>
+                                  <option value="{{$pegawai->status}}" selected hidden >
+                                  @if ($pegawai->status==1)
+                                      Out Office
+                                  @else
+                                      In Office
+                                  @endif</option>
+                                  <option value="1">Out Office</option>
+                                  <option value="0">In Office</option>
+                                </select>
+                            </div>
+                          </div>
                         </div>
                         <div class="row mt-4 col-md-12">
                           <ul class="text-right col-md-8" style="padding-right: 10px">
@@ -153,6 +168,16 @@
                                 <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Alamat</label>
                                 <div class="col-sm-5">
                                   <textarea class="form-control" name="alamat" id="alamat" required="">  </textarea>
+                                </div>
+                              </div>
+                              <div class="row col-md-12 mt-2">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Status</label>
+                                <div class="col-sm-5">
+                                    <select name="status" value="" class="form-control" required>
+                                      <option value="" selected hidden disabled >--- Select One ---</option>
+                                      <option value="1">Out Office</option>
+                                      <option value="0">In Office</option>
+                                    </select>
                                 </div>
                               </div>
                               <div class="row col-md-12 mt-2">

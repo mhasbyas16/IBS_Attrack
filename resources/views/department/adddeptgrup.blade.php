@@ -42,6 +42,17 @@
                                     <input type="text" class="form-control" name="deptgroup" id="iddept" value="" required>
                                 </div>
                               </div>
+
+                              <div class="row col-md-12 mt-2">
+                                <label class="col-sm-3 control-label" style="text-align: left; padding-left: 20pt">Status</label>
+                                <div class="col-sm-5">
+                                    <select name="status" value="" class="form-control" required>
+                                      <option value="" selected hidden >--- Select One ---</option>
+                                      <option value="1">Out Office</option>
+                                      <option value="0">In Office</option>
+                                    </select>
+                                </div>
+                              </div>
                             </div>
                             <div class="row mt-4 col-md-12">
                               <ul class="text-right col-md-8" style="padding-right: 10px">
@@ -67,6 +78,7 @@
                             <tr>
                               <th>No</th>
                               <th>Department Group Name</th>
+                              <th>Status</th>
                               <th>Action</th>
 
                             </tr>
@@ -79,6 +91,11 @@
                           <tr id="id_dept_{{$item->id}}">
                               <td>{{$no}}</td>
                               <td>{{$item->nama}}</td>
+                              <td>@if ($item->status==1)
+                                  Out Office
+                                  @elseif ($item->status==0)
+                                  In Office
+                              @endif</td>
                               <td>
                                 <a href="javascript:void(0)" id="deptGroupDel" data-id="{{$item->id}}" class="btn btn-danger btn-sm">Delete</a>
                               </td>
@@ -92,6 +109,7 @@
                             <tr>
                               <th>No</th>
                               <th>Department Group Name</th>
+                              <th>Status</th>
                               <th>Action</th>
                             </tr>
                             </tfoot>

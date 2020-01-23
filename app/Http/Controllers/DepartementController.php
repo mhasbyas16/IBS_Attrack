@@ -19,8 +19,8 @@ class DepartementController extends Controller
     }
     public function DeptGroupStore(Request $req){
         $dept=$req->deptgroup;
-
-        KelompokDept::insert(['nama'=>$dept]);
+        $status=$req->status;
+        KelompokDept::insert(['nama'=>$dept,'status'=>$status]);
 
         return redirect()->back();
     }
