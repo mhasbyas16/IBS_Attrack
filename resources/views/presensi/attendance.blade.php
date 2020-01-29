@@ -26,7 +26,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <form id="SearchAttendance" enctype="multipart/form-data">
+                <form action="{{--route('attendanceSearch.store')--}}" method="" id="SearchAttendance" enctype="multipart/form-data">
                   {{ csrf_field() }}
                 <div class="row">
                   <div class="col-sm-3 col-md-3">
@@ -40,74 +40,76 @@
                        <input type="date" class="form-control float-right" name="max" id="max" value="{{$end}}">
                   </div>
                   <div class="col-sm-2 col-md-2">
-                    <button type="submit" class="btn btn-default" id="searchAtt"><i class="fas fa-search"></i></button>
+                    <button type="submit" class="btn btn-default" id="searchAtt"><i class="fas fa-search"></i></button>&nbsp;&nbsp;&nbsp;
+                    <a href="{{route('attendance.index')}}" class="btn btn-danger">Clear</a>
                   </div>
                 </div>
               </form>
               <br>
                 <div class="row">
-                  <div class="col-xs-12">
+                  <div class="col-xs-12 col-md-12 col-lg-12">
                       <!-- jQuery Knob -->
                     <div class="box box-solid">
                         <!-- begin data alat-->
                       <form class="form-horizontal">
                         <div class="box-body">
                             <a href="{{route('attendance.export',['first'=>$first,'end'=>$end])}}" id="export" class="btn btn-primary">Export</a><br><br>
-                          
-                          <table id="pegawais" width="100%" class="table table-bordered table-striped text-center">
-                            <thead>
-                            <tr>
-                              <th>No.</th>
-                              <th>Name</th>
-                              <th>Date In</th>
-                              <th>Location In</th>
-                              <th>Date Out</th>
-                              <th>Location Out</th>
-                              <th>subject</th>
-                              <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody id="isiTB">
-                          @php
-                              $no=0;
-                          @endphp
-                          @foreach ($absensi as $item)
+                          <div class="table-responsive" id="AttTB">
+                            <table id="Att" class="table table-bordered table-striped text-center dt-responsive">
+                              <thead>
+                              <tr>
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>Date In</th>
+                                <th>Location In</th>
+                                <th>Date Out</th>
+                                <th>Location Out</th>
+                                <th>subject</th>
+                                <th>Action</th>
+                              </tr>
+                              </thead>
+                              <tbody id="isiTB">
                             @php
-                                $no++;
+                                $no=0;
                             @endphp
-                            <tr>
-                              <td>{{$no}}.</td>
-                              <td>{{$item->pegawai->nama}}</td>
-                              <td>{{$item->device_date_in}} {{$item->device_time_in}}</td>
-                              <td><a href="https://www.google.com/maps/search/{{$item->loc_in}}" target="_blank">{{$item->loc_in}}</a></td>
-                              <td>{{$item->device_date_out}} {{$item->device_time_out}}</td>
-                              <td><a href="https://www.google.com/maps/search/{{$item->loc_out}}" target="_blank">{{$item->loc_out}}</a></td>
-                              <td> 
-                                @if ($item->status=="telat")
-                                <span class="right badge badge-danger">Telat</span>
-                                @endif
-
-                              </td>
-                              <td style="width:50px;">
-                                <a href="{{route('attendance.detail',['id'=>$item->id,'N'=>$first,'X'=>$end])}}" class="btn btn-social-icon btn-info">
-                                  <i class="fa fa-info-circle"></i></a>
-                              </td>
-                            </tr>
-                          @endforeach                            
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                              <th>No.</th>
-                              <th>Name</th>
-                              <th>Date In</th>
-                              <th>Location In</th>
-                              <th>Date Out</th>
-                              <th>Location Out</th>
-                              <th>subject</th>
-                              <th>Action</th>
-                            </tr>
-                            </tfoot>
-                          </table>
+                            @foreach ($absensi as $item)
+                              @php
+                                  $no++;
+                              @endphp
+                              <tr>
+                                <td>{{$no}}.</td>
+                                <td>{{$item->pegawai->nama}}</td>
+                                <td>{{$item->device_date_in}} {{$item->device_time_in}}</td>
+                                <td><a href="https://www.google.com/maps/search/{{$item->loc_in}}" class="btn btn-info" target="_blank">Check</a></td>
+                                <td>{{$item->device_date_out}} {{$item->device_time_out}}</td>
+                                <td><a href="https://www.google.com/maps/search/{{$item->loc_out}}" class="btn btn-info" target="_blank">Check</a></td>
+                                <td> 
+                                  @if ($item->status=="telat")
+                                  <span class="right badge badge-danger">Telat</span>
+                                  @endif
+  
+                                </td>
+                                <td style="width:50px;">
+                                  <a href="{{route('attendance.detail',['id'=>$item->id,'N'=>$first,'X'=>$end])}}" class="btn btn-social-icon btn-info">
+                                    <i class="fa fa-info-circle"></i></a>
+                                </td>
+                              </tr>
+                            @endforeach                            
+                              </tbody>
+                              <tfoot>
+                              <tr>
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>Date In</th>
+                                <th>Location In</th>
+                                <th>Date Out</th>
+                                <th>Location Out</th>
+                                <th>subject</th>
+                                <th>Action</th>
+                              </tr>
+                              </tfoot>
+                            </table>
+                          </div>
                         </div>
                       </form>
                         <!-- /.box-body -->

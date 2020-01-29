@@ -19,16 +19,19 @@
   <link rel="stylesheet" href="{{URL::asset('plugins/fontawesome-free/css/all.min.css')}}">
   <!-- DataTables -->
   <link rel="stylesheet" href="{{URL::asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{URL::asset('plugins/select2/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="{{URL::asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
   <!-- Toastr -->
   <link rel="stylesheet" href="{{URL::asset('plugins/toastr/toastr.min.css')}}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{URL::asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{URL::asset('dist/css/adminlte.min.css')}}">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="{{URL::asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{URL::asset('dist/css/adminlte.min.css')}}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
@@ -74,6 +77,8 @@
 <script src="{{URL::asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <!-- Toastr -->
 <script src="{{URL::asset('plugins/toastr/toastr.min.js')}}"></script>
+<!-- Select2 -->
+<script src="{{URL::asset('plugins/select2/js/select2.full.min.js')}}"></script>
 
 <!-- OPTIONAL SCRIPTS -->
 <script src="{{URL::asset('dist/js/demo.js')}}"></script>
@@ -99,6 +104,10 @@ $(document).ready(function(){
   $("#Act").DataTable();
   $("#Leave").DataTable();
 });
+$(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+  });
 </script>
 <!-- AJAX -->
 @include("template.ajax")

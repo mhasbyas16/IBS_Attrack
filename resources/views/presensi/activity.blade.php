@@ -26,7 +26,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <form id="SearchActivity" enctype="multipart/form-data">
+                <form enctype="multipart/form-data">
                   {{ csrf_field() }}
                 <div class="row">
                   <div class="col-sm-3 col-md-3">
@@ -40,7 +40,8 @@
                        <input type="date" class="form-control float-right" name="max" id="max" value="{{$end}}">
                   </div>
                   <div class="col-sm-2 col-md-2">
-                    <button type="submit" class="btn btn-default" id="searchAct"><i class="fas fa-search"></i></button>
+                    <button type="submit" class="btn btn-default" id="searchAct"><i class="fas fa-search"></i></button>&nbsp;&nbsp;&nbsp;
+                    <a href="{{route('activity.index')}}" class="btn btn-danger">Clear</a>
                   </div>
                 </div>
               </form>
@@ -53,8 +54,8 @@
                       <form class="form-horizontal">
                         <div class="box-body">
                           <a href="{{route('activity.export',['first'=>$first,'end'=>$end])}}" id="export" class="btn btn-primary">Export</a><br><br>
-
-                          <table id="pegawais" class="table table-bordered table-striped text-center" style="width:100%;">
+                        <div class="table-responsive">
+                          <table id="Act" class="table table-bordered table-striped text-center dt-responsive" style="width:100%;">
                             <thead>
                             <tr>
                               <th>No.</th>
@@ -80,9 +81,9 @@
                               <td>{{$no}}.</td>
                               <td>{{$item->pegawai->nama}}</td>
                               <td>{{$item->device_date_in}} {{$item->device_time_in}}</td>
-                              <td><a href="https://www.google.com/maps/search/{{$item->loc_in}}" target="_blank">{{$item->loc_in}}</a></td>
+                              <td><a href="https://www.google.com/maps/search/{{$item->loc_in}}" class="btn btn-info" target="_blank">Check</a></td>
                               <td>{{$item->device_date_out}} {{$item->device_time_out}}</td>
-                              <td><a href="https://www.google.com/maps/search/{{$item->loc_out}}" target="_blank">{{$item->loc_out}}</a></td>
+                              <td><a href="https://www.google.com/maps/search/{{$item->loc_out}}" class="btn btn-info" target="_blank">Check</a></td>
                               <td>{{$item->customerSite->customer->cust_name}}</td>
                               <td style="width:50px;">
                                 <a href="{{route('activity.detail',['id'=>$item->id,'N'=>$first,'X'=>$end])}}" class="btn btn-social-icon btn-info">
@@ -104,6 +105,7 @@
                             </tr>
                             </tfoot>
                           </table>
+                        </div>
                         </div>
                       </form>
                         <!-- /.box-body -->

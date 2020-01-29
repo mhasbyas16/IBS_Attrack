@@ -142,9 +142,9 @@
                                       <td>{{$no}}.</td>
                                       <td>{{$item->pegawai->nama}}</td>
                                       <td>{{$item->device_date_in}} {{$item->device_time_in}}</td>
-                                      <td><a href="https://www.google.com/maps/search/{{$item->loc_in}}" target="_blank">{{$item->loc_in}}</a></td>
+                                      <td><a href="https://www.google.com/maps/search/{{$item->loc_in}}" class="btn btn-info" target="_blank">Check</a></td>
                                       <td>{{$item->device_date_out}} {{$item->device_time_out}}</td>
-                                      <td><a href="https://www.google.com/maps/search/{{$item->loc_out}}" target="_blank">{{$item->loc_out}}</a></td>
+                                      <td><a href="https://www.google.com/maps/search/{{$item->loc_out}}" class="btn btn-info" target="_blank">Check</a></td>
                                       <td> 
                                         @if ($item->status=="telat")
                                         <span class="right badge badge-danger">Telat</span>
@@ -208,9 +208,9 @@
                                       <td>{{$no}}.</td>
                                       <td>{{$item->pegawai->nama}}</td>
                                       <td>{{$item->device_date_in}} {{$item->device_time_in}}</td>
-                                      <td><a href="https://www.google.com/maps/search/{{$item->loc_in}}" target="_blank">{{$item->loc_in}}</a></td>
+                                      <td><a href="https://www.google.com/maps/search/{{$item->loc_in}}" class="btn btn-info" target="_blank">Check</a></td>
                                       <td>{{$item->device_date_out}} {{$item->device_time_out}}</td>
-                                      <td><a href="https://www.google.com/maps/search/{{$item->loc_out}}" target="_blank">{{$item->loc_out}}</a></td>
+                                      <td><a href="https://www.google.com/maps/search/{{$item->loc_out}}" class="btn btn-info" target="_blank">Check</a></td>
                                       <td>{{$item->customerSite->customer->cust_name}}</td>
                                       <td style="width:50px;">
                                         <a href="{{route('activity.detail',['id'=>$item->id,'N'=>$first,'X'=>$end])}}" class="btn btn-social-icon btn-info">

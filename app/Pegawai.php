@@ -24,6 +24,9 @@ class Pegawai extends Model
     public function leaves(){
         return $this->hasMany('App\Leave');
     }
+    public function fingerprints(){
+        return $this->hasMany('App\Fingerprint');
+    }
     public function logPegawais(){
         return $this->hasMany('App\LogPegawai');
     }

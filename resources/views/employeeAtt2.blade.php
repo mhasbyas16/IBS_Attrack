@@ -81,6 +81,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                           </div>
                         </div>
+                        <div class="input-group mb-3">
+                          <input type="password" name="pass" class="form-control" placeholder="Password">
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-lock"></span>
+                            </div>
+                          </div>
+                        </div>
                     </div>
                     <!-- /.login-card-body -->
                   </div>
@@ -171,22 +179,15 @@ function getLocation() {
  }
 
 //CEK
-
 $('body').on('keyup','#nip', function(e){
     e.preventDefault();
     var nip=$(this).val();
-    var loc=$('#tampilkan').val();
     $.ajax({
-        method: 'POST',
-        url: '{{url("/inout2")}}',
-        data: {
-          '_token': '{{ csrf_token() }}',
-          'nip': nip,
-          'loc': loc
-        },
+        method: 'GET',
+        url: '{{url("/cek")}}/'+nip,
         success: function(c){
             console.log(c);
-            /*if (c.data== null) {
+            if (c.data== null) {
                 $('#in').attr('disabled',false);
                 $('#out').attr('disabled',true);
                 $('#idabsensi').val("");
@@ -200,16 +201,16 @@ $('body').on('keyup','#nip', function(e){
                     $('#out').attr('disabled',true);
                     $('#idabsensi').val("");
                 }
-            } */
+            } 
         },
         statusCode:{
-            500: function(v){
-              console.log(v);
-                
+            500: function(){
+                $('#in').attr('disabled',true);
+                $('#out').attr('disabled',true);
+                $('#idabsensi').val("");
             }
         }
     });
 });
-
 </script>
 </html>

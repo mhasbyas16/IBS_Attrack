@@ -94,7 +94,7 @@
             </ul>
           </li>
 
-          <li class="nav-item has-treeview {{Route::is('employeeAdd.index','employee.index') ? 'menu-open':''}}">
+          <li class="nav-item has-treeview {{Route::is('employeeAdd.index','employee.index','finger.index') ? 'menu-open':''}}">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-street-view"></i>
               <p>
@@ -113,6 +113,12 @@
                 <a href="{{route('employee.index')}}" class="nav-link {{Route::is('employee.index') ? 'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Employee List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('finger.index')}}" class="nav-link {{Route::is('finger.index') ? 'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fingerprint Employee</p>
                 </a>
               </li>
             </ul>

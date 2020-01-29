@@ -203,4 +203,105 @@ class EmployeeController extends Controller
             return redirect()->back()->with('alert','Maaf NIP Anda Tidak Ditemukan');
         }
     }
+
+    public function inout2(Request $req){
+        $nip=$req->nip;
+        $time=date('H:i:s');
+        $date=date('Y-m-d');
+        $loc=$req->loc;
+
+        $SS=Pegawai::where('nip',$nip);
+        $datapeg=$SS->first();
+        $namapeg=$datapeg->nama;
+        //cek        
+        $search=$SS->first();
+        $id=$search->id;
+        $sql=Absensi::where('pegawai_id',$datapeg->id)->orderBy('id','desc');
+        $count=$SS->count();
+        $countABS=$sql->count();
+        //
+        if($count==0){
+            $isi=['cek'=>'0'];
+            $data=json_encode($isi);
+        }else{
+            $cek=$sql->first();
+            if ($cek->cek=="checkin" OR $cek->cek==" ") {
+                /*$IDabsensi=Absensi::where('pegawai_id',$datapeg->id)->orderBy('id','desc')->take(1)->first('server_date_in');
+                if ($IDabsensi->server_date_in!=$date) {
+
+                    if ($time>="09:16:00") {
+                        $status='telat';
+                    }elseif($time<="09:15:00"){
+                        $status='hadir';
+                    }
+                    $save=[
+                        'pegawai_id'=>$data->id,
+                        'server_time_in'=>$time,
+                        'server_date_in'=>$date,
+                        'device_time_in'=>$time,
+                        'device_date_in'=>$date,
+                        'loc_in'=>$loc,
+                        'status'=>$status,
+                        'cek'=>'checkin'
+                    ];
+                    $datasave=Absensi::insert($save);
+                    return redirect()->back()->with('Salert','Berhasil Checkin');
+                }elseif ($IDabsensi->server_date_in==$date) {
+                    return redirect()->back()->with('alert','Anda Sudah Checkin Hari Ini !!!');
+                }*/
+                $data="CI";
+                return response()->json($data);
+            }elseif ($cek->cek=="checkout") {
+                $save=[
+                    'server_time_out'=>$time,
+                    'server_date_out'=>$date,
+                    'device_time_out'=>$time,
+                    'device_date_out'=>$date,
+                    'loc_out'=>$loc,
+                    'cek'=>'checkout'
+                ];
+                $datasave=Absensi::where('id',$cek->id)->update($save);
+                if ($datasave) {
+                    $alert="Salert";
+                    $data="CO";
+                    $pesan="Berhasil Checkout";
+                }else {
+                    $alert="alert";
+                    $data="CO";
+                    $pesan="Gagal Checkout";
+                }
+                return response()->json([
+                    'data'=>$data,
+                    'alert'=>$alert,
+                    'pesan'=>$pesan,
+                    'nama'=>$namapeg]);
+            }
+        }
+
+        $sql=Pegawai::where('nip',$nip);
+        $cek=$sql->count();
+        if ($cek>=1) {
+            $data=$sql->first();
+                
+                
+        }elseif($cek==0){
+            return redirect()->back()->with('alert','Maaf NIP Anda Tidak Ditemukan');
+        }
+    }
+
+    
+
+//FINGERPRINT
+    public function finger(){
+        $emp=Pegawai::all('id','nama');
+        return view('pegawai.fingerprint-emp',[
+            'emp'=>$emp
+        ]);
+    }
+
+    public function NIP($id){
+        $emp=Pegawai::where('id',$id)->first('nip');
+
+        return response()->json($emp);
+    }
 }

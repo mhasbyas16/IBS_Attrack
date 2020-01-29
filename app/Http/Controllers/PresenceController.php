@@ -161,21 +161,49 @@ class PresenceController extends Controller
         ]);
     }
     public function Searchactivity(Request $req){
+        $sessionDept=Session::get('dept');
         $first=$req->min;
         $end=$req->max;
-        $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$first,$end])->get();
-        
+        if($sessionDept=='0'){
+            $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$first,$end])->get();
+        }else{
+            $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')
+            ->join('pegawais','pegawais.id','=','aktivitas.pegawai_id')
+            ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
+            ->where('jabatans.kelompok_dept_id',$sessionDept)
+            ->whereBetween('device_date_in',[$first,$end])->get();
+        }
         return response()->json($aktivitas);
     }
 
     public function activityExport($first,$end){
-        $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$first,$end])->get();
-        //$sumAbsensi=Absensi::with('pegawai')->select(DB::raw('count(*)as total'),'absensis.*')->whereBetween('server_date_in',[$first,$end])->get();
+        $sessionDept=Session::get('dept');
+
+        if($sessionDept=='0'){
+            $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$first,$end])->get();
+        }else{
+            $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')
+            ->join('pegawais','pegawais.id','=','aktivitas.pegawai_id')
+            ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
+            ->where('jabatans.kelompok_dept_id',$sessionDept)
+            ->whereBetween('device_date_in',[$first,$end])->get();
+        }
+        
         $pegawai=Pegawai::get(['id','nama']);
         $hadir=[];
         foreach ($pegawai as $val) {
-            $hadirAktivitas=Aktivitas::with('pegawai')->where('pegawai_id',$val->id)->whereBetween('device_date_in',[$first,$end])->count();
-            $hadir[$val->id]=$hadirAktivitas;
+            
+            if($sessionDept=='0'){
+                $hadirAktivitas=Aktivitas::with('pegawai')->where('pegawai_id',$val->id)->whereBetween('device_date_in',[$first,$end])->count();
+                $hadir[$val->id]=$hadirAktivitas;
+            }else{
+                $hadirAktivitas=Aktivitas::with('pegawai')
+                ->join('pegawais','pegawais.id','=','aktivitas.pegawai_id')
+                ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
+                ->where('jabatans.kelompok_dept_id',$sessionDept)
+                ->where('pegawai_id',$val->id)->whereBetween('device_date_in',[$first,$end])->count();
+                $hadir[$val->id]=$hadirAktivitas;
+            }
         }
        
         return view('presensi.export.exportAct',[

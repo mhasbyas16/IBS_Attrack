@@ -4,8 +4,8 @@ $(document).ready(function(){
     $("#password2").keyup(function(){
       var pass1=$("#password").val();
       var pass2=$(this).val();
-      if (pass1 != pass2) {   
-        $(this).css("background-color", "#ff4d4d"); 
+      if (pass1 != pass2) {
+        $(this).css("background-color", "#ff4d4d");
       }else{
         $(this).css("background-color","");
       }
@@ -23,13 +23,13 @@ $(document).ready(function(){
             e.preventDefault();
             var dept_id=$(this).data("id");
             if (confirm('apakah anda akan menghapus data ini?')) {
-            
+
             $.ajax({
                 method: "GET",
                 url: "{{url('/dept_grup/destroy')}}/"+dept_id,
                 success: function(del){
                     $("#id_dept_"+dept_id).remove();
-    
+
                     $(function(){
                       const Toast = Swal.mixin({
                       toast: true,
@@ -37,7 +37,7 @@ $(document).ready(function(){
                       showConfirmButton: false,
                       timer: 3000
                       });
-    
+
                       Toast.fire({
                       type: 'success',
                       title: 'Sukses Menghapus Data'
@@ -56,7 +56,7 @@ $(document).ready(function(){
         e.preventDefault();
         var id=$(this).data("id");
         if (confirm('apakah anda akan menghapus data ini?')) {
-    
+
         $.ajax({
           method: "GET",
           url: "{{url('/dept/destroy')}}/"+id,
@@ -81,13 +81,13 @@ $(document).ready(function(){
         });
         }
       });
-    
+
     //JOB TYPE
     //COMBOBOX
       $("#IDKelDept").on("change",function(e){
         e.preventDefault();
         var idkeldept= $(this).val();
-    
+
         $.ajax({
           method: "GET",
           url: "{{url('/job_type/cmbx')}}/"+idkeldept,
@@ -107,7 +107,7 @@ $(document).ready(function(){
       $("body").on("click","#JobTypeDel", function(e){
         e.preventDefault();
         var idJob=$(this).data("id");
-    
+
         if (confirm('apakah anda akan menghapus data ini?')) {
         $.ajax({
           method: "GET",
@@ -130,13 +130,13 @@ $(document).ready(function(){
         });
         }
       });
-    
+
 //CUSTOMER
     //SHOW EDIT
       $("body").on("click","#editCust", function(e){
         e.preventDefault();
         var idCust=$(this).data("id");
-    
+
         $.ajax({
           method: "GET",
           url: "{{url('/customer/edit')}}/"+idCust,
@@ -144,7 +144,7 @@ $(document).ready(function(){
             console.log(hasil);
           $("#CUST").val(" ");
           $("#CustName").val(" ");
-          
+
           $("#CUST").val(hasil.id);
           $("#CustName").val(hasil.cust_name);
           },
@@ -179,8 +179,8 @@ $(document).ready(function(){
           error: function(G){
             console.log("Error:",G);
           }
-        });    
-        }     
+        });
+        }
       });
 
 //CUSTOMER SITE
@@ -188,7 +188,7 @@ $(document).ready(function(){
     $("body").on("click","#editCustSite", function(e){
         e.preventDefault();
         var idCustS=$(this).data("id");
-    
+
         $.ajax({
           method: "GET",
           url: "{{url('/customer_site/edit')}}/"+idCustS,
@@ -199,7 +199,7 @@ $(document).ready(function(){
             $("#Name").val("");
             $("#Phone").val("");
             $("#Address").val("");
-          
+
             $("#CUSTS").val(hasil.id);
             $("#PIC").val(hasil.pic);
             $("#Name").val(hasil.customer_site);
@@ -237,8 +237,8 @@ $(document).ready(function(){
           error: function(G){
             console.log("Error:",G);
           }
-        });    
-        }     
+        });
+        }
       });
 
 //ATTENDANCE SEARCH DATE
@@ -256,10 +256,7 @@ $(document).ready(function(){
       success : function(TB){
         console.log(TB);
         $("#export").attr("href", "{{url('/att/export')}}/"+N+"/"+X);
-        //var export ="";
-        //$("#export").text("<a href='' class='btn btn-primary'>axExport</a><br><br>");
-        $("#isiTB").empty();
-
+        $('#Att').DataTable().clear().draw();
         var NO=0;
 
         $.each(TB, function(key,value){
@@ -271,26 +268,19 @@ $(document).ready(function(){
             var alert ="";
           }
 
-          $("#isiTB").append(
-                
-          "<tr>"
-              +"<td>"+NO+".</td>"
-              +"<td>"+value.pegawai.nama+"</td>"
-              +"<td>"+value.device_date_in+" "+value.device_time_in+"</td>"
-              +"<td><a href='https://www.google.com/maps/search/"+value.loc_in+"' target='_blank'>"+value.loc_in+"</a></td>"
-              +"<td>"+value.device_date_out+" "+value.device_time_out+"</td>"
-              +"<td><a href='https://www.google.com/maps/search/"+value.loc_out+"' target='_blank'>"+value.loc_out+"</a></td>"
-              +"<td>"
-                  +alert
-              +"</td>"
-              +"<td style='width:50px;'>"
-                  +"<a href='"+URL+"' target='_blank' class='btn btn-social-icon btn-info'>"
-                    +"<i class='fa fa-info-circle'></i></a>"
-              +"</td>"
-              +"</tr>"
-      );  
+          $('#Att').DataTable().row.add([
+            NO,
+            value.pegawai.nama,
+            value.device_date_in+" "+value.device_time_in,
+            "<a href='https://www.google.com/maps/search/"+value.loc_in+"' class='btn btn-info' target='_blank'>Check</a>",
+            value.device_date_out+" "+value.device_time_out,
+            "<a href='https://www.google.com/maps/search/"+value.loc_out+"' class='btn btn-info' target='_blank'>Check</a>",
+            alert,
+            "<a href='"+URL+"' target='_blank' class='btn btn-social-icon btn-info'><i class='fa fa-info-circle'></i></a>"
+          ]).draw(false);
         });
-              
+
+                                
       }
     });
   });
@@ -310,39 +300,30 @@ $("body").on("click","#searchAct", function(e){
       success : function(TB){
         console.log(TB);
         $("#export").attr("href", "{{url('/act/export')}}/"+N+"/"+X);
-        $("#isiTB").empty();
+        $("#Act").DataTable().clear().draw();
 
         var NO=0;
 
         $.each(TB, function(key,value){
           ++NO;
           var URL = "{{url('/act/detail/emp')}}/"+value.id+"/"+N+"/"+X;
-          
-          $("#isiTB").append(
-                
-          "<tr>"
-              +"<td>"+NO+".</td>"
-              +"<td>"+value.pegawai.nama+"</td>"
-              +"<td>"+value.device_date_in+" "+value.device_time_in+"</td>"
-              +"<td><a href='https://www.google.com/maps/search/"+value.loc_in+"' target='_blank'>"+value.loc_in+"</a></td>"
-              +"<td>"+value.device_date_out+" "+value.device_time_out+"</td>"
-              +"<td><a href='https://www.google.com/maps/search/"+value.loc_out+"' target='_blank'>"+value.loc_out+"</a></td>"
-              +"<td>"+value.customer_site.customer.cust_name+"</td>"
-              +"<td style='width:50px;'>"
-                  +"<a href='"+URL+"' target='_blank' class='btn btn-social-icon btn-info'>"
-                    +"<i class='fa fa-info-circle'></i></a>"
-              +"</td>"
-              +"</tr>"
 
-     );
-
-  
+          $("#Act").DataTable().row.add(
+          [
+            NO,
+            value.pegawai.nama,
+            value.device_date_in+" "+value.device_time_in,
+            "<a href='https://www.google.com/maps/search/"+value.loc_in+"' class='btn btn-info' target='_blank'>Check</a>",
+            value.device_date_out+" "+value.device_time_out,
+            "<a href='https://www.google.com/maps/search/"+value.loc_out+"' class='btn btn-info' target='_blank'>Check</a>",
+            value.customer_site.customer.cust_name,
+            "<a href='"+URL+"' target='_blank' class='btn btn-social-icon btn-info'><i class='fa fa-info-circle'></i></a>",
+          ]).draw(false);
         });
-              
+
       }
     });
   });
-
 //LEAVES SEARCH DATE
 $("body").on("click","#searchLeaves", function(e){
     e.preventDefault();
@@ -364,9 +345,9 @@ $("body").on("click","#searchLeaves", function(e){
 
         $.each(TB, function(key,value){
           ++NO;
-              
+
           $("#isiTB").append(
-                
+
           "<tr id='"+NO+"'>"
               +"<td style='width:2%;'>"+NO+".</td>"
               +"<td style='width:20%;'>"+value.pegawai.nama+"</td>"
@@ -375,9 +356,9 @@ $("body").on("click","#searchLeaves", function(e){
               +"<td style='width:20%;'>"+value.reason+"</td>"
               +"<td style='width:23%;'><img src='"+value.foto+"' style='height:100px;' alt=''></td>"
           +"</tr>"
-       );  
+       );
         });
-              
+
       }
     });
   });
@@ -388,13 +369,13 @@ $("body").on("click","#searchLeaves", function(e){
             e.preventDefault();
             var id=$(this).data("id");
             if (confirm('apakah anda akan menghapus data ini?')) {
-            
+
             $.ajax({
                 method: "GET",
                 url: "{{url('/employee/destroy')}}/"+id,
                 success: function(del){
                     $("#listemp_"+id).remove();
-    
+
                     $(function(){
                       const Toast = Swal.mixin({
                       toast: true,
@@ -402,7 +383,7 @@ $("body").on("click","#searchLeaves", function(e){
                       showConfirmButton: false,
                       timer: 3000
                       });
-    
+
                       Toast.fire({
                       type: 'success',
                       title: 'Sukses Menghapus Data'
@@ -415,6 +396,21 @@ $("body").on("click","#searchLeaves", function(e){
             });
             }
         });
-        
+
+  $('#namaSelect').change(function(e){
+    e.preventDefault();
+    var id = $(this).val();
+
+    $.ajax({
+      method : 'GET',
+      url : '{{url("/finger-emp")}}/'+id,
+      success : function(isi){
+        console.log(isi);
+        $('#nip').val(isi.nip);
+      }
+
+    });
+  });
+
     });
 </script>

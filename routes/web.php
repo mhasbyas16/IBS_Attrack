@@ -16,6 +16,7 @@ Route::get('/home',function(){
 Route::get('/time','EmployeeController@time');
 Route::get('/cek/{nip}','EmployeeController@cek');
 Route::post('/inout','EmployeeController@inout')->name('inout.store');
+Route::post('/inout2','EmployeeController@inout2')->name('inout2.store');
 //login / Logout
 Route::get('/', 'LoginController@login')->name('login.index');
 Route::post('/login', 'LoginController@validate')->name('login.store');
@@ -70,6 +71,9 @@ Route::get('/employee/edit/{id}', 'EmployeeController@employeeEdit')->name('empl
 Route::get('/employee/resetpass/{id}', 'EmployeeController@employeeReset')->name('employee.reset');
 Route::post('/employe/store/{type}','EmployeeController@employeeStore')->name('employee.store');
 Route::get('/employee_add', 'EmployeeController@employeeAdd')->name('employeeAdd.index');
+//finger
+Route::get('/finger-emp','EmployeeController@finger')->name('finger.index');
+Route::get('/finger-emp/{id}','EmployeeController@NIP')->name('finger.nip');
 
 //setting
 Route::get('/setting', 'Controller@setting')->name('setting.index');
