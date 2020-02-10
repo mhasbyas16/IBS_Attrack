@@ -78,7 +78,11 @@
                               @endphp
                               <tr>
                                 <td>{{$no}}.</td>
-                                <td>{{$item->pegawai->nama}}</td>
+                                <td>@if ($item->pegawai== null)
+                                    Employee not found
+                                @else
+                                {{$item->pegawai->nama}}
+                                @endif</td>
                                 <td>{{$item->device_date_in}} {{$item->device_time_in}}</td>
                                 <td><a href="https://www.google.com/maps/search/{{$item->loc_in}}" class="btn btn-info" target="_blank">Check</a></td>
                                 <td>{{$item->device_date_out}} {{$item->device_time_out}}</td>
