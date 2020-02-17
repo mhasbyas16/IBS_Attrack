@@ -68,16 +68,14 @@
               </div>
             </div>-->
             <!-- /.col -->
-            <div class="col-4">
+            <div class="col-12">
               <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-            </div>
+            </div><br><br>
             <!-- /.col -->
           </div>
         </form>
 
-        <p class="mb-1">
-          <a href="#">I forgot my password</a>
-        </p>
+        <a href="{{route('izin.index')}}" class="btn btn-danger btn-block">Leaves Employee</a>
       </div>
       <!-- /.login-card-body -->
     </div>
