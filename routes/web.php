@@ -10,8 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//LEAVES
+Route::get('/izin',"IzinController@izin")->name('izin.index');
+//
 Route::get('/home',function(){
-    return view('employeeAtt');
+    return view('employeeAtt2');
 })->name('home.index');
 Route::get('/time','EmployeeController@time');
 Route::get('/cek/{nip}','EmployeeController@cek');

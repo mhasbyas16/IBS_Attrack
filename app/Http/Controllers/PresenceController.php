@@ -61,20 +61,20 @@ class PresenceController extends Controller
     public function attendanceExport($first,$end){
         $sessionDept=Session::get('dept');
         if($sessionDept=='0'){
-            $absensi=Absensi::with('pegawai')->whereBetween('server_date_in',[$first,$end])->get();
-            $leave=Leave::with('pegawai','leaveType')->whereBetween('date',[$first,$end])->get();
+            $absensi=Absensi::with('pegawai')->whereBetween('server_date_in',[$first,$end])->orderBy('pegawai_id','asc')->get();
+            $leave=Leave::with('pegawai','leaveType')->whereBetween('date',[$first,$end])->orderBy('pegawai_id','asc')->get();
         }else{
             $absensi=Absensi::with('pegawai')
             ->join('pegawais','pegawais.id','=','absensis.pegawai_id')
             ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
             ->where('jabatans.kelompok_dept_id',$sessionDept)
-            ->whereBetween('server_date_in',[$first,$end])->get();
+            ->whereBetween('server_date_in',[$first,$end])->orderBy('pegawais.nama','asc')->get();
 
             $leave=Leave::with('pegawai','leaveType')
             ->join('pegawais','pegawais.id','=','leaves.pegawai_id')
             ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
             ->where('jabatans.kelompok_dept_id',$sessionDept)
-            ->whereBetween('date',[$first,$end])->get();
+            ->whereBetween('date',[$first,$end])->orderBy('pegawais.nama','asc')->get();
         }
         
 
@@ -180,13 +180,13 @@ class PresenceController extends Controller
         $sessionDept=Session::get('dept');
 
         if($sessionDept=='0'){
-            $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$first,$end])->get();
+            $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$first,$end])->orderBy('pegawai_id','asc')->get();
         }else{
             $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')
             ->join('pegawais','pegawais.id','=','aktivitas.pegawai_id')
             ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
             ->where('jabatans.kelompok_dept_id',$sessionDept)
-            ->whereBetween('device_date_in',[$first,$end])->get();
+            ->whereBetween('device_date_in',[$first,$end])->orderBy('pegawais.id','asc')->get();
         }
         
         $pegawai=Pegawai::get(['id','nama']);

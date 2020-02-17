@@ -1,10 +1,3 @@
-@if (Session::has('id'))
-  @if (Session::get('dept')!=100)
-   <script>window.location = "{{route('dash.index')}}";</script>    
-  @endif  
-@elseif(!Session::has('id'))
-  <script>window.location = "{{route('logout.destroy')}}";</script>
-@endif
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -73,25 +66,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="card-body login-card-body">
                         <form action="{{route('inout.store')}}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <div class="input-group mb-3">
-                          <input type="text" name="nip" id="nip" class="form-control" placeholder="NIP">
-                          <div class="input-group-append">
-                            <div class="input-group-text">
-                              <span class="fas fa-envelope"></span>
-                            </div>
+                        <div class="row">
+                          <div class="col-sm-12 col-md-12">
+                            <select name="" id="" class="form-control">
+                            @foreach ($peg as $item)
+                                <option value="{{$item->id}}">{{$item->nama}}</option>
+                            @endforeach
+                            </select>
+                          </div>
+                        </div><br>
+                        <div class="row">
+                          <div class="col-sm-12 col-md-12">
+                            <select name="" id="" class="form-control">
+                              @foreach ($type as $i)
+                                  <option value="{{$i->id}}">{{$i->type}}</option>
+                              @endforeach
+                              </select>
                           </div>
                         </div>
                     </div>
                     <!-- /.login-card-body -->
                   </div>
 
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                      <textarea class="form-control"></textarea>
+                  </div><br><br>
+                  
+                </div>  
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12 text-center">
-                        <h3 style="font-size: 30px;"><b><?php echo date('d-m-Y'); ?></b></h3>
-                        <b><h3 style="font-size: 30px;" id="timestamp"></h3></b>
+                      <input type="file" class="form-control" accept="image/*;capture=camera">
                         <hr size="2px" style="width: 500px;">
                     </div>
                 </div>
+               
                 <div class="row text-center">
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <b><h3>Your Location</h3>
@@ -102,7 +111,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                 </div>
             </form>
-                <a href="{{route('logout.destroy')}}" onclick="return confirm('apakah anda mau keluar?')" class="card-link">logout</a>
+                
               </div>
             </div><!-- /.card -->
           </div>
@@ -139,7 +148,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
 </body>
-<script>
+<script>/*
 $(function(){
     setInterval(timestamp, 1000);//fungsi yang dijalan setiap detik, 1000 = 1 detik
 });
@@ -186,7 +195,7 @@ $('body').on('keyup','#nip', function(e){
         },
         success: function(c){
             console.log(c);
-            /*if (c.data== null) {
+            if (c.data== null) {
                 $('#in').attr('disabled',false);
                 $('#out').attr('disabled',true);
                 $('#idabsensi').val("");
@@ -200,7 +209,7 @@ $('body').on('keyup','#nip', function(e){
                     $('#out').attr('disabled',true);
                     $('#idabsensi').val("");
                 }
-            } */
+            } 
         },
         statusCode:{
             500: function(v){
@@ -210,6 +219,6 @@ $('body').on('keyup','#nip', function(e){
         }
     });
 });
-
+*/
 </script>
 </html>
