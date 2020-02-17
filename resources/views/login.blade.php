@@ -74,8 +74,6 @@
             <!-- /.col -->
           </div>
         </form>
-
-        <a href="{{route('izin.index')}}" class="btn btn-danger btn-block">Leaves Employee</a>
       </div>
       <!-- /.login-card-body -->
     </div>

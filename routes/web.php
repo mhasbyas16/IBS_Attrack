@@ -12,6 +12,7 @@
 */
 //LEAVES
 Route::get('/izin',"IzinController@izin")->name('izin.index');
+Route::post('/izin/save',"IzinController@izinPost")->name('izin.store');
 //
 Route::get('/home',function(){
     return view('employeeAtt2');

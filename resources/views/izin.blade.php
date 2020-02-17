@@ -41,7 +41,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <div class="card-body">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h1><b>Attendance</b></h1>
+                        <h1><b>Leaves</b></h1>
                     </div>
                 </div>
                 <div class="card">
@@ -64,11 +64,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     @endif
                     <div class="card-body login-card-body">
-                        <form action="{{route('inout.store')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{route('izin.store')}}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="row">
                           <div class="col-sm-12 col-md-12">
-                            <select name="" id="" class="form-control">
+                            <select name="pegawai" class="form-control">
                             @foreach ($peg as $item)
                                 <option value="{{$item->id}}">{{$item->nama}}</option>
                             @endforeach
@@ -77,7 +77,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div><br>
                         <div class="row">
                           <div class="col-sm-12 col-md-12">
-                            <select name="" id="" class="form-control">
+                            <select name="type" class="form-control">
                               @foreach ($type as $i)
                                   <option value="{{$i->id}}">{{$i->type}}</option>
                               @endforeach
@@ -90,24 +90,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                   <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12 text-center">
-                      <textarea class="form-control"></textarea>
+                      <label for="#text">Reason :</label>
+                      <textarea name="alasan" class="form-control" id="text"></textarea>
                   </div><br><br>
                   
                 </div>  
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12 text-center">
-                      <input type="file" class="form-control" accept="image/*;capture=camera">
+                      <label for="#photo">Upload Photo :</label>
+                      <input type="file" name="Uphoto" id="photo" class="form-control" accept="image/*;capture=camera">
                         <hr size="2px" style="width: 500px;">
                     </div>
                 </div>
                
                 <div class="row text-center">
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        <b><h3>Your Location</h3>
-                            <input type="text" name="id" id="idabsensi" value="" hidden>
-                            <textarea style="border: none;" class="text-center" id="tampilkan" name="loc" readonly></textarea></b><br>
-                        <input type="submit" class="btn btn-success" name="checkin" id="in" value="Check In" disabled>&nbsp;
-                        <input type="submit" class="btn btn-danger" name="checkout" id="out" value="Check Out" disabled>
+                        <input type="submit" class="btn btn-success" name="save" value="Save">&nbsp;
+                        <a href="{{route("login.index")}}" class="btn btn-danger">Back</a>
                     </div>
                 </div>
             </form>
