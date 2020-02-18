@@ -27,6 +27,7 @@ class IzinController extends Controller
         if ($valid->fails()) {
             return back()->with('alert',"Max 1 MB Photo use front camera, Or change your resolution");
         }else{
+            $url="https://www.ibs-attrack.com/android/attrack2/activity-images/";
             $peg=$request->pegawai;
             $type=$request->type;
             $alasan=$request->alasan;
@@ -38,8 +39,22 @@ class IzinController extends Controller
                 $photoName=$peg."-".$date.".".$name;
                 $destinationPath = public_path('../../android/attrack2/activity-images/');
                 $image->move($destinationPath, $photoName);
-        
-                return back()->with('Salert','Image Upload successfully');
+                
+                $data=[
+                    "pegawai_id"=>$peg,
+                    "table_code_id"=>"0",
+                    "date"=>date("Y-m-d"),
+                    "leave_type_id"=>$type,
+                    "reason"=>$alasan,
+                    "foto"=>$url.$photoName,
+                ];
+                
+                try {
+                    $save=Leave::insert($data);
+                    return back()->with('Salert','Image Upload successfully');
+                } catch (Exception $e) {
+                    return back()->with('alert','Image Upload fails'.$e);
+                }
             }
         }        
     }
