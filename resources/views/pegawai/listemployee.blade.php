@@ -51,30 +51,32 @@
                                 $no=0;
                             @endphp
                             @foreach ($pegawai as $item)
+                            @foreach ($item->pegawais as $items)
                             @php
                                 $no++;
                             @endphp                          
-                            <tr id="listemp_{{$item->id}}">
+                            <tr id="listemp_{{$items->id}}">
                               <td>{{$no}}.</td>
-                              <td>{{$item->nip}}</td>
-                              <td>{{$item->nama}}</td>
-                              <td>{{$item->email}}</td>
+                              <td>{{$items->nip}}</td>
+                              <td>{{$items->nama}}</td>
+                              <td>{{$items->email}}</td>
                               <td>
-                                @if ($item->gender=="lk")
+                                @if ($items->gender=="lk")
                                     Laki-Laki
-                                @elseif ($item->gender=="pr")
+                                @elseif ($items->gender=="pr")
                                     Perempuan
                                 @endif
                               </td>
-                              <td>{{$item->address}}</td>
-                              <td>{{$item->jabatan->nama}}</td>
+                              <td>{{$items->address}}</td>
+                              <td>{{$item->nama}}</td>
                               <td style="width:20%;">
-                                <a href="{{route('employee.show',['id'=>Crypt::encrypt($item->id)])}}" class="btn btn-social-icon btn-success">
+                                <a href="{{route('employee.show',['id'=>Crypt::encrypt($items->id)])}}" class="btn btn-social-icon btn-success">
                                   <i class="fa fa-edit"></i></a>&nbsp;
-                                <a href="javascript:void(0)" id="deleteEMP" data-id="{{$item->id}}" class="btn btn-social-icon btn-danger">
+                                <a href="javascript:void(0)" id="deleteEMP" data-id="{{$items->id}}" class="btn btn-social-icon btn-danger">
                                   <i class="fa fa-trash"></i></a>
                               </td>
                             </tr>
+                            @endforeach
                             @endforeach                            
                             </tbody>
                             <tfoot>

@@ -15,11 +15,11 @@ class EmployeeController extends Controller
     public function employee(){
         $sessionDept=Session::get('dept');   
         if($sessionDept=='0'){
-            $pegawai=Pegawai::with('jabatan')->get();
+            $pegawai=Jabatan::with("pegawais")->orderBy('nama','asc')->get();
+            
         }else{
-            $pegawai=Pegawai::with('jabatan')
-                    ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
-                    ->where('jabatans.kelompok_dept_id',$sessionDept)->get();
+            $pegawai=Jabatan::with("pegawais")->where("kelompok_dept_id",$sessionDept)->orderBy('nama','asc')->get();
+ 
         }     
 
         return view('pegawai.listemployee',[

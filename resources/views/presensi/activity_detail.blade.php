@@ -35,9 +35,9 @@
                         <div class="box-body">
                           <table style="width:100%;">
                             <tr>
-                              <td style="width:20%;">Name</td>
+                              <td style="width:30%;">Name</td>
                               <td style="width:2%;">:</td>
-                              <td style="width:78%;">{{$item->pegawai->nama}}</td>
+                              <td style="width:68%;">{{$item->pegawai->nama}}</td>
                             </tr>
                             <tr>
                               <td>Date In</td>
@@ -83,6 +83,11 @@
                               <td>Job Activity</td>
                               <td>:</td>
                               <td>{{$item->jobActivity->jenis_kegiatan}}</td>
+                            </tr>
+                            <tr>
+                              <td>Picture</td>
+                              <td>:</td>
+                              <td><img src="{{$item->foto}}" style="width:250px;"/></td>
                             </tr>
                             <tr>
                               <td colspan="3">

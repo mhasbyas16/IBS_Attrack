@@ -138,11 +138,8 @@ class PresenceController extends Controller
         if($sessionDept=='0'){
             $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->whereBetween('device_date_in',[$first,$end])->get();
         }else{
-            $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')
-            ->join('pegawais','pegawais.id','=','aktivitas.pegawai_id')
-            ->join('jabatans','jabatans.id','=','pegawais.jabatan_id')
-            ->where('jabatans.kelompok_dept_id',$sessionDept)
-            ->whereBetween('device_date_in',[$first,$end])->get();
+           // $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->select(->join('pegawais','pegawais.id','=','aktivitas.pegawai_id')->join('jabatans','jabatans.id','=','pegawais.jabatan_id')->where('jabatans.kelompok_dept_id',$sessionDept)->whereBetween('device_date_in',[$first,$end])->get();
+            $aktivitas=Aktivitas::with('pegawai','customerSite.customer','jobActivity')->select('aktivitas.id as ai','pegawais.*','aktivitas.*')->join('pegawais','pegawais.id','=','aktivitas.pegawai_id')->join('jabatans','jabatans.id','=','pegawais.jabatan_id')->where('jabatans.kelompok_dept_id',$sessionDept)->whereBetween('device_date_in',[$first,$end])->get();
         }
         return view('presensi.activity',[
             'aktivitas'=>$aktivitas,
