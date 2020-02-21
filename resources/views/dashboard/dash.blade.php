@@ -28,13 +28,12 @@
         <div class="row">
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box">
-              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tasks"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Operational</span>
+                <span class="info-box-text">Manajemen</span>
                 <span class="info-box-number">
-                  20
-                  <small>%</small>
+                  {{$manajemen}}
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -44,11 +43,11 @@
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-code"></i></span>
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-coins"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Technical</span>
-                <span class="info-box-number">20</span>
+                <span class="info-box-text">Finance and Accounting</span>
+                <span class="info-box-number">{{$finance}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -64,8 +63,8 @@
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Sales</span>
-                <span class="info-box-number">10</span>
+                <span class="info-box-text">Sales and Marketing</span>
+                <span class="info-box-number">{{$sales}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -74,11 +73,11 @@
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-cogs"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Customer</span>
-                <span class="info-box-number">15</span>
+                <span class="info-box-text">Technical</span>
+                <span class="info-box-number">{{$technical}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -87,6 +86,21 @@
           <!-- /.col -->
         </div>
         <!-- /.row -->
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-4">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Operation Support And Service</span>
+                <span class="info-box-number">{{$operation}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
 
         <div class="row">
           <div class="col-md-12">

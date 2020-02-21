@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Absensi;
 use App\Aktivitas;
 use App\Leave;
+use App\Pegawai;
+use CountDept;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -41,6 +43,22 @@ class Controller extends BaseController
             $isi=Leave::with('pegawai','leaveType')->whereBetween('date',[$first,$end]);
             $leave=$isi->get();
         }
+        
+        $manajemen = Pegawai::join("jabatans","jabatans.id","=","pegawais.jabatan_id")
+                    ->join("kelompok_depts","kelompok_depts.id","=","jabatans.kelompok_dept_id")
+                    ->where("kelompok_depts.id",5)->count(); 
+        $finance = Pegawai::join("jabatans","jabatans.id","=","pegawais.jabatan_id")
+                    ->join("kelompok_depts","kelompok_depts.id","=","jabatans.kelompok_dept_id")
+                    ->where("kelompok_depts.id",2)->count();
+        $sales = Pegawai::join("jabatans","jabatans.id","=","pegawais.jabatan_id")
+                ->join("kelompok_depts","kelompok_depts.id","=","jabatans.kelompok_dept_id")
+                ->where("kelompok_depts.id",3)->count();
+        $technical = Pegawai::join("jabatans","jabatans.id","=","pegawais.jabatan_id")
+                    ->join("kelompok_depts","kelompok_depts.id","=","jabatans.kelompok_dept_id")
+                    ->where("kelompok_depts.id",4)->count();
+        $operation =  Pegawai::join("jabatans","jabatans.id","=","pegawais.jabatan_id")
+                        ->join("kelompok_depts","kelompok_depts.id","=","jabatans.kelompok_dept_id")
+                        ->where("kelompok_depts.id",1)->count();
 
         return view('dashboard.dash',[
             'absensi'=>$absensi,
@@ -48,6 +66,11 @@ class Controller extends BaseController
             'leave'=>$leave,
             'first'=>$first,
             'end'=>$end,
+            'manajemen'=>$manajemen,
+            'finance'=>$finance,
+            'sales'=>$sales,
+            'technical'=>$technical,
+            'operation'=>$operation
         ]);
     }
 
